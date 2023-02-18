@@ -31,6 +31,11 @@ const app = express();
 const server = require('http').Server(app);
 
 /** Routes */
+const blogRoutes = require('./routes/blog');
+
+/** Routes */
+
+
 const authRoutes = require('./routes/auth');
 const courseRoutes = require('./routes/course');
 const sessionRoutes = require('./routes/session');
@@ -60,8 +65,10 @@ app.use(cors());
 
 /** Routes Definitions */
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 /** Middleware */
 
+app.use('/api/blog', blogRoutes);
 app.use('/api/course', courseRoutes);
 app.use('/api/session', sessionRoutes);
 app.use('/api/event', eventRoutes);

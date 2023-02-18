@@ -11,7 +11,7 @@ const MainBody = () => {
                 <div className="swiper sliderFeaturedPosts">
                   <div className="swiper-wrapper">
                     <div className="swiper-slide">
-                      <a href="single-post.html" className="img-bg d-flex align-items-end" style = {{"backgroundImage": "url('./img/post-slide-1.jpg')"}}>
+                      <a href="single-post.html" className="img-bg d-flex align-items-end" style = {{"backgroundImage": "url('./img/post-slide-2.jpg')"}}>
                         <div className="">
                           <h2>The Best Homemade Masks for Face (keep the Pimples Away)</h2>
                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>

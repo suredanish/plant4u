@@ -5,29 +5,12 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
     {
-        admin: {
-            type: Boolean,
-            trim: true,
+        productId: {
+            type: String,
         },
         username: {
             type: String,
             trim: true,
-            unique: true,
-            maxlength: ['15', 'Username should be less than 15 characters']
-        },
-        social: {
-            id: {
-                type: String,
-                default: null
-            },
-            image: {
-                type: String,
-                default: null
-            },
-            email: {
-                type: String,
-                default: null
-            }
         },
         email: {
             type: String,
@@ -35,22 +18,24 @@ const UserSchema = new Schema(
             unique: true,
             sparse: true
         },
-        password: {
-            type: String,
-            default: null
+        contact: {
+            type: Number
         },
-        image: {
-            type: String,
-            default: null
+        address1: {
+            type: String
+        },
+        address2: {
+            type: String
+        },
+        pincode: {
+            type: Number
         },
         location: {
             type: String,
             default: null
         },
-        events : {
-            type: Array
-        }
     },
+
     {
         timestamps: {
             createdAt: 'created_at',
@@ -58,24 +43,6 @@ const UserSchema = new Schema(
         }
     }
 );
-
-UserSchema.methods.isValidPassword = function(password) {
-    return bcrypt.compare(password, this.password);
-};
-
-// Before Saving hash the password with bcrypt, using the default 10 rounds for salt
-UserSchema.pre('save', function(next) {
-    if (this.password !== '' && this.isModified('password')) {
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(this.password, salt, (err, res) => {
-                this.password = res;
-                next();
-            });
-        });
-    } else {
-        next();
-    }
-});
 
 const User = mongoose.model('User', UserSchema);
 
