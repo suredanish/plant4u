@@ -30,7 +30,6 @@ let upload = multer({
         return res.status(400).send({message: 'something went wrong!' , success: false}) ;
     }
 })
-
 /**
  * @description GET /api/blog/
  */
