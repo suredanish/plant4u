@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Blog } = require('../models/Blog');
+const { TrendingBlog } = require('../models/TrendingBlog');
 const os = require('os');
 const multer = require('multer');
 
@@ -30,6 +31,20 @@ let upload = multer({
         return res.status(400).send({message: 'something went wrong!' , success: false}) ;
     }
 })
+
+/**
+ * @description GET /api/blog/trending
+ */
+router.get('/trending', async ( req, res) => {
+    try {
+        const result = await TrendingBlog.find({}).sort({_id: -1}).limit(5);
+        return res.status(200).send(result);
+    }
+    catch ( error ) {
+        return res.status(400).send({message: 'something went wrong!' , success: false}) ;
+    }
+})
+
 /**
  * @description GET /api/blog/
  */

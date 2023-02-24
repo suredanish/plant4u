@@ -1,9 +1,13 @@
-import { useState } from "react";
+import {  useState, useEffect } from "react";
 import "./Quiz.css";
-import { quiz } from "./data/questions";
-
+import {quiz} from './data/questions'
+ 
 const Quiz = () => {
+
+
   const [activeQuestion, setActiveQuestion] = useState(0);
+  // const [questions, setQuestions] = useState([]);
+  const [error, setError] = useState(null)
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
@@ -15,6 +19,19 @@ const Quiz = () => {
 
   const { questions } = quiz;
   const { question, choices, correctAnswer } = questions[activeQuestion];
+
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/blog/peace")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setQuestions(data.quiz_questions);
+  //       console.log(questions)
+  //     })
+  //     .catch((error) => {
+  //       setError(error.message);
+  //     })
+  // }, []);
 
   const onClickNext = () => {
     setSelectedAnswerIndex(null);

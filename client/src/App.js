@@ -9,7 +9,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainBody />} />
-        <Route path="/blog/1" element={<Blog />} />
+        <Route path="/blog/:params" element={<Blog />} />
       </Routes>
     </div>
   );

@@ -1,22 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import moment from 'moment';
 
 const MainBody = () => {
 
+  const [blogList, setBlogList] = useState([]);
+  const [firstPriorityBlog, setFirstPriorityBlog] = useState([]);
+  const [secongPriorityBlog, setSecondPriorityBlog] = useState([]);
   const [popularBlogs, setpopularBlogs] = useState([]);
+  const [trendingBlogs, setTrendingBlogs] = useState([]);
 
   useEffect(()=> {
     fetch("http://localhost:5000/api/blog")
     .then((res) => res.json())
-    .then((blogList) => {
-      setpopularBlogs(blogList)
+    .then((blogList) => { 
+      
+      if(blogList && blogList?.length) {
+        blogList.forEach(element => {
+          if(element?.meta?.priority == 1) {
+            setpopularBlogs(element)
+          } else if(element?.meta?.priority == 2) {
+            setFirstPriorityBlog([element])
+          } else if(element?.meta?.priority == 3) {
+            setSecondPriorityBlog([element])
+          }
+        });
+      }
     })
     .catch((error) => {
-      console.log(error, 'Error is here')
-      setpopularBlogs([])
+      // setBlogList([])
   }) 
   }, []);
+
+  useEffect(()=> {
+    fetch("http://localhost:5000/api/blog/trending")
+    .then((res) => res.json())
+    .then((trendingBlog) => { 
+      
+      if(trendingBlog && trendingBlog?.length) {
+        setTrendingBlogs(trendingBlog)
+      }
+    })
+    .catch((error) => {
+      // setBlogList([])
+  }) 
+  }, []);
+
+
+  console.log(trendingBlogs, 'trendingBlogs is here')
+  console.log(firstPriorityBlog, 'firstPriorityBlog is here')
+  console.log(secongPriorityBlog, 'secongPriorityBlog is here')
 
   return (
     <main id="main">
@@ -141,40 +174,37 @@ const MainBody = () => {
           <div className="row g-5">
             <div className="col-lg-4">
               <div className="post-entry-1 lg">
-                <Link to={"/blog/1"}>
+                <Link to={`/blog/${popularBlogs.meta_description}`}>
                   <img
-                    src="./img/post-landscape-1.jpg"
+                    src="./img/peaceLilly/peace-lilly-2.jpeg"
                     alt=""
                     className="img-fluid"
                   />
                 </Link>
                 <div className="post-meta">
-                  <span className="date">Peace Lilly</span>{" "}
+                  <span className="date">{popularBlogs.meta_description}</span>{" "}
                   <span className="mx-1"></span>{" "}
-                  <span>Feb 7th '23</span>
+                  <span>{moment(popularBlogs.createdAt).format("MMM Do YY")}</span>
                 </div>
                 <h2>
-                  <Link to={"/blog/1"}>
-                    The Only Peace Lilly Guide You Will Ever Need
+                  <Link to={`/blog/${popularBlogs.meta_description}`}>
+                    {popularBlogs.description}
                   </Link>
                 </h2>
                 <p className="mb-4 d-block">
-                  Peace Lillies are beautiful and popular houseplants that are known for their lush green follage and
-                  striking white flowers
-                  These plants are easy to care for, making them a great choice for both novice and experinced gardeners
-                  in this blog we will discuss the diffrent aspects of the peace lilly plant.
+                    {popularBlogs.mini_description}
                 </p>
 
                 <div className="d-flex align-items-center author">
                   <div className="photo">
                     <img
-                      src="./img/person-1.jpg"
+                      src="./img/peaceLilly/peace-lilly-1.jpeg"
                       alt=""
                       className="img-fluid"
                     />
                   </div>
                   <div className="name">
-                    <h3 className="m-0 p-0">Cameron Williamson</h3>
+                    <h3 className="m-0 p-0">plant4u</h3>
                   </div>
                 </div>
               </div>
@@ -183,25 +213,49 @@ const MainBody = () => {
             <div className="col-lg-8">
               <div className="row g-5">
                 <div className="col-lg-4 border-start custom-border">
-                  <div className="post-entry-1">
-                    <a href="single-post.html">
-                      <img
-                        src="./img/post-landscape-2.jpg"
-                        alt=""
-                        className="img-fluid"
-                      />
-                    </a>
-                    <div className="post-meta">
-                      <span className="date">Sport</span>{" "}
-                      <span className="mx-1">&bullet;</span>{" "}
-                      <span>Jul 5th '22</span>
-                    </div>
-                    <h2>
-                      <a href="single-post.html">
-                        Let’s Get Back to Work, New York
+                  {firstPriorityBlog && firstPriorityBlog.length > 0 &&
+                    firstPriorityBlog.map((blog) => (
+                      <div className="post-entry-1">
+                      <a href={`/blog/${blog.meta_description}`}>
+                        <img
+                          src="./img/peaceLilly/peace-lilly-4.jpeg"
+                          alt=""
+                          className="img-fluid"
+                        />
                       </a>
-                    </h2>
+                      <div className="post-meta">
+                        <span className="date">{blog.title}</span>{" "}
+                        <span className="mx-1"></span>{" "}
+                        <span>{moment(blog.createdAt).format("MMM Do YY")}</span>
+                      </div>
+                      <h2>
+                        <a href={`/blog/${blog.meta_description}`}>
+                            {blog.description}
+                        </a>
+                      </h2>
+                    </div>
+                    ))}
+                  
+                  {/* <div className="post-entry-1">
+                      <a href="single-post.html">
+                        <img
+                          src="./img/post-landscape-2.jpg"
+                          alt=""
+                          className="img-fluid"
+                        />
+                      </a>
+                      <div className="post-meta">
+                        <span className="date">Tata</span>{" "}
+                        <span className="mx-1">&bullet;</span>{" "}
+                        <span>Jul 17th '22</span>
+                      </div>
+                      <h2>
+                        <a href="single-post.html">
+                          How to Avoid Distraction and Stay Focused During Video Calls?
+                        </a>
+                      </h2>
                   </div>
+
                   <div className="post-entry-1">
                     <a href="single-post.html">
                       <img
@@ -241,9 +295,31 @@ const MainBody = () => {
                         Places On the Web?
                       </a>
                     </h2>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-lg-4 border-start custom-border">
+                {secongPriorityBlog && secongPriorityBlog.length > 0 &&
+                    secongPriorityBlog.map((blog) => (
+                      <div className="post-entry-1">
+                      <a href={`/blog/${blog.meta_description}`}>
+                        <img
+                          src="./img/peaceLilly/peace-lilly-4.jpeg"
+                          alt=""
+                          className="img-fluid"
+                        />
+                      </a>
+                      <div className="post-meta">
+                        <span className="date">{blog.title}</span>{" "}
+                        <span className="mx-1"></span>{" "}
+                        <span>{moment(blog.createdAt).format("MMM Do YY")}</span>
+                      </div>
+                      <h2>
+                        <a href={`/blog/${blog.meta_description}`}>
+                            {blog.description}
+                        </a>
+                      </h2>
+                    </div>
+                    ))}
                   <div className="post-entry-1">
                     <a href="single-post.html">
                       <img
@@ -307,6 +383,19 @@ const MainBody = () => {
                   <div className="trending">
                     <h3>Trending</h3>
                     <ul className="trending-post">
+                      {trendingBlogs && trendingBlogs.length &&
+                        trendingBlogs.map((trending) => (
+                          <li>
+                            <a href="">
+                              <span className="number">1</span>
+                              <h3>
+                                {trending.title}
+                              </h3>
+                              <span className="author">plant4u</span>
+                            </a>
+                        </li>
+                        ))
+                      }
                       <li>
                         <a href="single-post.html">
                           <span className="number">1</span>
@@ -314,11 +403,11 @@ const MainBody = () => {
                             The Best Homemade Masks for Face (keep the Pimples
                             Away)
                           </h3>
-                          <span className="author">Jane Cooper</span>
+                          <span classNablogListme="author">Jane Cooper</span>
                         </a>
                       </li>
                       <li>
-                        <a href="single-post.html">
+                        <a href="">
                           <span className="number">2</span>
                           <h3>
                             17 Pictures of Medium Length Hair in Layers That
