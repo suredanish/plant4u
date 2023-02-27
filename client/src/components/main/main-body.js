@@ -554,7 +554,7 @@ const MainBody = () => {
         </div>
       </section>
 
-      <section className="category-section">
+      {/* <section className="category-section">
         <div className="container" data-aos="fade-up">
           <div className="section-header d-flex justify-content-between align-items-center mb-5">
             <h2>Business</h2>
@@ -773,9 +773,9 @@ const MainBody = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="category-section">
+      {/* <section className="category-section">
         <div className="container" data-aos="fade-up">
           <div className="section-header d-flex justify-content-between align-items-center mb-5">
             <h2>Lifestyle</h2>
@@ -1072,7 +1072,7 @@ const MainBody = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 };

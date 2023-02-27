@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from 'moment';
 import { useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import Template from "../template";
 import Quiz from "../quiz/Quiz";
@@ -13,9 +14,16 @@ const Blog = () => {
   const [data, setData] = useState([]);
   const [popularBlogs, setpopularBlogs] = useState([]);
   const [metaDescription , setMetaDescription] = useState('');
+  const [color, setColor] = useState("#ffffff");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const override = {
+    display: "block",
+    margin: "200 auto",
+    borderColor: "grey",
+  };
 
 
   useEffect(() => {
@@ -58,11 +66,14 @@ const Blog = () => {
 
   if(!data.length) {
     return (
-      <main id="main">
-        <div>
-          404 Not Found!
-        </div>
-      </main>
+      <ClipLoader
+      color={color}
+      loading={loading}
+      cssOverride={override}
+      size={100}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
     )
   }
 

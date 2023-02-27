@@ -125,7 +125,7 @@ const About = () => {
             </div>
             </section>
 
-            <section>
+            {/* <section>
             <div class="container" data-aos="fade-up">
                 <div class="row">
                 <div class="col-12 text-center mb-5">
@@ -174,7 +174,7 @@ const About = () => {
                 </div>
                 </div>
             </div>
-            </section>
+            </section> */}
 
         </main>
 
