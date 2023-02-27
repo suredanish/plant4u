@@ -7,16 +7,16 @@ const sendEmail = (to, body) => {
         const message = {
             from: {
                 email: 'xxstyagixx@gmail.com',
-                name: 'Relatyv'
+                name: 'plant4u'
             },
             to: {
                 email: to,
             },
-            subject: 'Registration',
+            subject: 'contact',
             content: [
               {
                 type: 'text/html',
-                value: EmailTemplate(body.otp)
+                value: EmailTemplate(body)
               }
             ]
           };

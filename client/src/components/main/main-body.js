@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from 'moment';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const MainBody = () => {
 
@@ -8,6 +9,14 @@ const MainBody = () => {
   const [secongPriorityBlog, setSecondPriorityBlog] = useState(new Set())
   const [popularBlogs, setpopularBlogs] = useState(new Set());
   const [trendingBlogs, setTrendingBlogs] = useState(new Set());
+  const [color, setColor] = useState("#ffffff");
+  const [loading, setLoading] = useState(true);
+
+  const override = {
+    display: "block",
+    margin: "200 auto",
+    borderColor: "grey",
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/api/blog")
@@ -28,6 +37,9 @@ const MainBody = () => {
       .catch((error) => {
         // setBlogList([])
       })
+      .finally(() => {
+        setLoading(false);
+      })
   }, []);
 
 
@@ -45,6 +57,18 @@ const MainBody = () => {
       })
   }, []);
 
+  if(!firstPriorityBlog?.length) {
+    return (
+      <ClipLoader
+      color={color}
+      loading={loading}
+      cssOverride={override}
+      size={100}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+    )
+  }
   return (
     <main id="main">
       {/* <section id="hero-slider" className="hero-slider">
@@ -336,11 +360,11 @@ const MainBody = () => {
         <div className="container" data-aos="fade-up">
           <div className="section-header d-flex justify-content-between align-items-center mb-5">
             <h2>Culture</h2>
-            <div>
+            {/* <div>
               <a href="category.html" className="more">
                 See All Culture
               </a>
-            </div>
+            </div> */}
           </div>
 
           <div className="row">
@@ -350,11 +374,7 @@ const MainBody = () => {
                   href="single-post.html"
                   className="me-4 thumbnail mb-4 mb-lg-0 d-inline-block"
                 >
-                  <img
-                    src="./img/post-landscape-6.jpg"
-                    alt=""
-                    className="img-fluid"
-                  />
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/FLb4FHJAWhI?autoplay=1" title="Beginner" frameborder="0" allowfullscreen></iframe>
                 </a>
                 <div>
                   <div className="post-meta">

@@ -44,6 +44,7 @@ const tokenRoutes = require('./routes/token');
 const userRoutes = require('./routes/user');
 const middleware = require('./middleware/verfiyToken');
 const googleServiceRoutes = require('./routes/googleService');
+const contactRoutes = require('./routes/contact');
 
 
 app.use(
@@ -73,6 +74,7 @@ app.use('/api/course', courseRoutes);
 app.use('/api/session', sessionRoutes);
 app.use('/api/event', eventRoutes);
 app.use('/api/token', tokenRoutes);
+app.use('/api/contact', contactRoutes);
 
 
 if (process.env.NODE_ENV !== 'production') {
