@@ -47,7 +47,7 @@ const MainBody = () => {
 
   return (
     <main id="main">
-      <section id="hero-slider" className="hero-slider">
+      {/* <section id="hero-slider" className="hero-slider">
         <div className="container-md" data-aos="fade-in">
           <div className="row">
             <div className="col-12">
@@ -161,7 +161,7 @@ const MainBody = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section id="posts" className="posts">
         <div className="container" data-aos="fade-up">
