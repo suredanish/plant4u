@@ -29,7 +29,7 @@ const Blog = () => {
   useEffect(() => {
     if(query.params) {
       setMetaDescription(query.params)
-      fetch(`http://localhost:5000/api/blog/${query.params}`)
+      fetch(`/api/blog/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
           setData(actualData);
@@ -46,7 +46,7 @@ const Blog = () => {
   }, []);
 
   useEffect(()=> {
-    fetch("http://localhost:5000/api/blog")
+    fetch("/api/blog")
     .then((res) => res.json())
     .then((blogList) => {
       setpopularBlogs(blogList)
@@ -181,7 +181,7 @@ const Blog = () => {
                   <h3 className="aside-title">Video</h3>
                   <div className="video-post">
                     <a
-                      href="https://www.youtube.com/watch?v=AiFfDjmd0jU"
+                      href="#"
                       className="glightbox link-video"
                     >
                       <span className="bi-play-fill"></span>

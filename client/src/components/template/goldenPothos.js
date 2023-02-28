@@ -12,7 +12,7 @@ const goldenPothos = () => {
         style={{ height: 600}}
       />
       <figcaption>
-        Some Content to update
+        {/* Some Content to update */}
       </figcaption>
     </div>
     <p>
@@ -28,10 +28,10 @@ const goldenPothos = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
   
     <p>
@@ -50,10 +50,10 @@ const goldenPothos = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
   
     <h3>Watering:</h3>
@@ -109,10 +109,10 @@ const goldenPothos = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
       <p>With its vibrant, variegated leaves and ability to thrive in a wide range of conditions, it's sure to add a touch of green to your home or office.</p>
       <p>With proper care and attention, your Golden Pothos can grow and thrive for years to come.</p>

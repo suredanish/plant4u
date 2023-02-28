@@ -869,7 +869,8 @@ section {
   left: -10px;
   top: -20px;
   font-weight: 700;
-  color: rgba(var(--color-black-rgb), 0.05);
+  color: #466e62;
+  opacity: 0.5;
 }
 
 .trending .trending-post li a h3 {

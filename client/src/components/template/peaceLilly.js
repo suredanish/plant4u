@@ -11,9 +11,9 @@ const peaceLilly = () => {
       className="img-fluid"
       style={{ height: 600}}
     />
-    <figcaption>
+    {/* <figcaption>
       Some Content to update
-    </figcaption>
+    </figcaption> */}
   </div>
   <p>
     These plants are easy to care for, making them a great choice for both novice and experienced gardeners.
@@ -29,10 +29,10 @@ const peaceLilly = () => {
       alt=""
       className="img-fluid"
     />
-    <figcaption>
+    {/* <figcaption>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Explicabo, odit?{" "}
-    </figcaption>
+    </figcaption> */}
   </div>
 
   <p>
@@ -64,10 +64,10 @@ const peaceLilly = () => {
       alt=""
       className="img-fluid"
     />
-    <figcaption>
+    {/* <figcaption>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Explicabo, odit?{" "}
-    </figcaption>
+    </figcaption> */}
   </div>
   <p>
     Aside from being beautiful houseplants, peace lilies have a number of benefits, including:
@@ -86,10 +86,10 @@ const peaceLilly = () => {
       alt=""
       className="img-fluid"
     />
-    <figcaption>
+    {/* <figcaption>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Explicabo, odit?{" "}
-    </figcaption>
+    </figcaption> */}
   </div>
     <p>In conclusion, peace lilies are a wonderful addition to any home or office. They are easy to care for, beautiful to look at, and offer a number of benefits to your health and well-being. With a little love and attention, your peace lily can thrive and bring joy to your space for years to come</p>
     </div>

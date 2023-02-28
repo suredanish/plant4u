@@ -57,6 +57,7 @@ app.use(express.static(path.join(__dirname,"../client/build")));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(compression());
+app.set('trust proxy', true)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

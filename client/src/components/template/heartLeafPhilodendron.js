@@ -11,9 +11,9 @@ const heartLeafPhilodendron= () => {
         className="img-fluid"
         style={{ height: 600}}
       />
-      <figcaption>
+      {/* <figcaption>
         Some Content to update
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>
     In this blog, we will explore the features, care, propagation, and common pests of this lovely plant.
@@ -27,10 +27,10 @@ const heartLeafPhilodendron= () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
   
     <p>
@@ -50,10 +50,10 @@ const heartLeafPhilodendron= () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>The plant likes to be kept evenly moist, but not soaking wet, and requires more frequent watering during the growing season (spring and summer) than during the dormant season (fall and winter).</p>
 
@@ -66,10 +66,10 @@ const heartLeafPhilodendron= () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>Propagation of the Heart leaf philodendron is relatively easy and can be done by stem cuttings. </p>
     <p>Take a stem cutting that is a few inches long, making sure to include a node, and place it in a jar of water or a well-draining potting mix.</p>
@@ -83,10 +83,10 @@ const heartLeafPhilodendron= () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>Regularly wiping down the leaves with a damp cloth can help to prevent infestations, and insecticidal soap can be used if necessary.</p>
 
@@ -97,10 +97,10 @@ const heartLeafPhilodendron= () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>
         The Heart leaf philodendron is a beautiful and easy-to-care-for houseplant that can brighten up any indoor space. 

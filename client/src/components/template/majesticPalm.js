@@ -11,9 +11,9 @@ const majesticPalm = () => {
         className="img-fluid"
         style={{ height: 600}}
       />
-      <figcaption>
+      {/* <figcaption>
         Some Content to update
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>
      If you're looking to add a touch of the tropics to your home or office, this plant is a great choice. Here's a guide to growing and caring for the Majestic Palm.
@@ -28,10 +28,10 @@ const majesticPalm = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
   
     <p>
@@ -64,10 +64,10 @@ const majesticPalm = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p> The Majestic Palm can be propagated through seed, but it can be a slow process. Here's how to do it </p>
 
@@ -90,10 +90,10 @@ const majesticPalm = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>
         The Majestic Palm is susceptible to a few pests and diseases, including spider mites, mealybugs, and root rot. Here are a few tips for preventing and treating these issues:
@@ -116,10 +116,10 @@ const majesticPalm = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
       <p>With its tall, slender trunk and feathery fronds, it's sure to make a statement wherever you place it. With proper care and attention, your Majestic Palm can thrive for years to come.</p>
       </div>

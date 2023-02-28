@@ -4,62 +4,6 @@ const About = () => {
     return (
         <html lang="en">
         <body>
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-            <a href="index.html" class="logo d-flex align-items-center">
-            
-            <img src="assets/img/logo.png" alt="" />
-                <h1>ZenBlog</h1>
-            </a>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                <li><a href="index.html">Blog</a></li>
-                <li><a href="single-post.html">Single Post</a></li>
-                <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                    <li><a href="search-result.html">Search Result</a></li>
-                    <li><a href="#">Drop Down 1</a></li>
-                    <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                        <li><a href="#">Deep Drop Down 1</a></li>
-                        <li><a href="#">Deep Drop Down 2</a></li>
-                        <li><a href="#">Deep Drop Down 3</a></li>
-                        <li><a href="#">Deep Drop Down 4</a></li>
-                        <li><a href="#">Deep Drop Down 5</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Drop Down 2</a></li>
-                    <li><a href="#">Drop Down 3</a></li>
-                    <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-
-            <div class="position-relative">
-                <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-                <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-                <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
-                <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-
-
-                <div class="search-form-wrap js-search-form-wrap">
-                <form action="search-result.html" class="search-form">
-                    <span class="icon bi-search"></span>
-                    <input type="text" placeholder="Search" class="form-control" /> 
-                    <button class="btn js-search-close"><span class="bi-x"></span></button>
-                </form>
-                </div>
-
-            </div>
-
-            </div>
         <main id="main">
             <section>
             <div class="container" data-aos="fade-up">
@@ -73,27 +17,30 @@ const About = () => {
 
                 <div class="d-md-flex post-entry-2 half">
                     <a href="#" class="me-4 thumbnail">
-                    <img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid" />
+                    <img src="./img/history.jpeg" alt="" style={{ width: '100%'}}class="img-fluid" />
                     </a>
                     <div class="ps-md-5 mt-4 mt-md-0">
                     <div class="post-meta mt-4">About us</div>
                     <h2 class="mb-4 display-4">Company History</h2>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                    <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
+                    <p>plant4u is an e-commerce startup commited to make a Green quality driven accessible to everyone at very affordable rates. It was started by three computer science undergraduate students from SMVDU.</p>
+                    <p>From starting with zero investement and after getting a good response from jammu, we have now decide to cater this to Delhi NCR.</p>
+                    <p>We believe that our journey towards revolutioninzing the green space industry has just begun. But while we growing we also learning.</p>
                     </div>
                 </div>
 
                 <div class="d-md-flex post-entry-2 half mt-5">
                     <a href="#" class="me-4 thumbnail order-2">
-                    <img src="assets/img/post-landscape-1.jpg" alt="" class="img-fluid" />
+                    <img src="./img/vision-mission-banner.jpg" alt="" class="img-fluid" />
                     </a>
                     <div class="pe-md-5 mt-4 mt-md-0">
                     <div class="post-meta mt-4">Mission &amp; Vision</div>
                     <h2 class="mb-4 display-4">Mission &amp; Vision</h2>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                    <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
+                    <p>Its a dynamic idea with a mission to encourage green space work culture, where technoloical and social advancements plays a major role in the preservation of our worlds nature beauty.</p>
+                    <p>We have taken awat all the stress associated with shopping for plant and you can now order all your houseplants and even buy other decorative eco green items.</p>
+                    <p>Online plant shopping has never been easier. Need things fresh ? Wether it's plants, we deliver to many cities across india and maintain excellent delivery times, ensuring that all your products reach you in time.</p>
+
                     </div>
                 </div>
 
@@ -106,75 +53,17 @@ const About = () => {
             <div class="container" data-aos="fade-up">
                 <div class="row justify-content-between align-items-lg-center">
                 <div class="col-lg-5 mb-4 mb-lg-0">
-                    <h2 class="display-4 mb-4">Latest News</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, rem eaque vel est asperiores iste pariatur placeat molestias, rerum provident ea maiores debitis eum earum esse quas architecto! Minima, voluptatum! Minus tempora distinctio quo sint est blanditiis voluptate eos. Commodi dolore nesciunt culpa adipisci nemo expedita suscipit autem dolorum rerum?</p>
-                    <p>At magni dolore ullam odio sapiente ipsam, numquam eius minus animi inventore alias quam fugit corrupti error iste laboriosam dolorum culpa doloremque eligendi repellat iusto vel impedit odit cum. Sequi atque molestias nesciunt rem eum pariatur quibusdam deleniti saepe eius maiores porro quam, praesentium ipsa deserunt laboriosam adipisci. Optio, animi!</p>
-                    <p><a href="#" class="more">View All Blog Posts</a></p>
+                    <h2 class="display-4 mb-4">Why should I use plant4u</h2>
+                    <p>plant4u allow you to walk away and welcome an easy relaxed way of browsing and shopping for plants. Discover new products and shops for all your plant needs from the comfort of your home and office.</p>
+                    <p>No more getting stuck in traffic jams, paying for parking, standing in long queues and carrying heavy bags get everything you need , when you need , right at your doorstep. Nursery Shopping online is now easy as every product on your monthly shopping list,</p>
+                    <p>is now available online at plant4u, India best online nursery</p>
                 </div>
                 <div class="col-lg-6">
-                    <div class="row">
-                    <div class="col-6">
-                        <img src="assets/img/post-portrait-3.jpg" alt="" class="img-fluid mb-4" />
-                    </div>
-                    <div class="col-6 mt-4">
-                        <img src="assets/img/post-portrait-4.jpg" alt="" class="img-fluid mb-4" />
-                    </div>
-                    </div>
+                    <img src="./img/choose.jpeg" alt="" class="img-fluid mb-4" />
                 </div>
                 </div>
             </div>
             </section>
-
-            {/* <section>
-            <div class="container" data-aos="fade-up">
-                <div class="row">
-                <div class="col-12 text-center mb-5">
-                    <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2 class="display-4">Our Team</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sint sed, fugit distinctio ad eius itaque deserunt doloribus harum excepturi laudantium sit officiis et eaque blanditiis. Dolore natus excepturi recusandae.</p>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-1.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4" />
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Founder &amp; CEO</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                </div>
-                <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-2.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4" />
-                    <h4>Wade Warren</h4>
-                    <span class="d-block mb-3 text-uppercase">Founder, VP</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                </div>
-                <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-3.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4" />
-                    <h4>Jane Cooper</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                </div>
-                <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-4.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4" />
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                </div>
-                <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-5.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4" />
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                </div>
-                <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-6.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4" />
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                </div>
-                </div>
-            </div>
-            </section> */}
 
         </main>
 

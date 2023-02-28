@@ -11,9 +11,9 @@ const stringPearl = () => {
         className="img-fluid"
         style={{ height: 600}}
       />
-      <figcaption>
+      {/* <figcaption>
         Some Content to update
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>
     This succulent plant is known for its delicate, trailing stems that resemble a string of pearls, and it's easy to care for, making it an excellent choice for beginners.
@@ -31,10 +31,10 @@ const stringPearl = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
   
     <p>The plant's stems can grow up to 3 feet long, making it an excellent choice for hanging baskets or trailing over the edges of pots. </p>
@@ -62,10 +62,10 @@ const stringPearl = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
 
     <h3>Take a stem cutting:</h3>
@@ -84,10 +84,10 @@ const stringPearl = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
+      {/* <figcaption>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Explicabo, odit?{" "}
-      </figcaption>
+      </figcaption> */}
     </div>
     <p>
         In addition to its unique appearance and easy care requirements, the String of Pearls plant also has several health benefits. Here are a few:
