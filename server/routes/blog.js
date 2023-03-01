@@ -58,4 +58,42 @@ router.get('/:param', async ( req, res) => {
     }
 })
 
+/**
+ * @description Post /api/blog/
+ */
+
+// Comparing arrays
+const compareArrays = (a, b) => {
+    return JSON.stringify(a) === JSON.stringify(b);
+}
+
+router.post('/quiz/answers', async ( req, res) => {
+    const quizID = req.body.id;
+    const quiz = await Blog.findById(quizID);
+    //1. if  ansers is false
+    //return status : false
+    if(!compareArrays(quiz.quiz_answers, req.body.answers)){
+        res.status(200).json({
+            status: false
+        })
+    }
+    //1. if all ansers is correct and isofferValid false
+     //return status : true , canShowAddress: false
+    else if(compareArrays(quiz.quiz_answers, req.body.answers) && quiz.meta.isOfferValid === false)
+    {
+        res.status(200).json({
+            status: true,
+            canShowAddress: false
+        })
+    }
+    //1. if all ansers is correct and isofferValid true
+    //return status : true , canShowAddress: true
+    else if(compareArrays(quiz.quiz_answers, req.body.answers) && quiz.meta.isOfferValid === true){
+        res.status(200).json({
+            status: true,
+            canShowAddress: true
+        })
+    }
+
+})
 module.exports = router;
