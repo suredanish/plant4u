@@ -68,6 +68,7 @@ const compareArrays = (a, b) => {
 }
 
 router.post('/quiz/answers', async ( req, res) => {
+    try{
     const quizID = req.body.id;
     const quiz = await Blog.findById(quizID);
     //1. if  ansers is false
@@ -93,6 +94,9 @@ router.post('/quiz/answers', async ( req, res) => {
             status: true,
             canShowAddress: true
         })
+    }
+}catch ( error ) {
+        return res.status(400).send({message: 'something went wrong!' , success: false}) ;
     }
 
 })
