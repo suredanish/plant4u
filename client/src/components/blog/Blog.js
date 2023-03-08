@@ -18,6 +18,7 @@ const Blog = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [quizData, setQuizData] = useState([])
 
   const override = {
     display: "block",
@@ -37,13 +38,12 @@ const Blog = () => {
         })
         .catch((error) => {
           setError(error.message);
-          setData(null);
         })
         .finally(() => {
           setLoading(false);
         });
     }
-  }, []);
+  }, [isModelOpen]);
 
   useEffect(()=> {
     fetch("/api/blog")
@@ -85,7 +85,7 @@ const Blog = () => {
             <button className="close-modal" onClick={closeModal}>
               &times;
             </button>
-            <Quiz />
+            <Quiz quizData={data} isModelOpen={isModelOpen} />
           </div>
           <div className="container">
             <div className="row">
@@ -98,8 +98,8 @@ const Blog = () => {
                   </div>
                   {data &&
                     data.map(({ _id, title, description }) => (
-                      <div>
-                        <h1 className="mb-5" key={_id}>
+                      <div key={_id}>
+                        <h1 className="mb-5">
                           {title}
                         </h1>
                         <h2>
@@ -113,7 +113,7 @@ const Blog = () => {
                 {/* Quiz form */}
 
                 <h2>
-                  Want to earn a free plant? Click below{" "}
+                  Want to earn a free plant? Click below
                   <img
                     style={{ width: "2rem" }}
                     src="https://em-content.zobj.net/source/microsoft-teams/337/backhand-index-pointing-down_1f447.png"
@@ -198,8 +198,8 @@ const Blog = () => {
                   <h3 className="aside-title">Tags</h3>
                   <ul className="aside-tags list-unstyled">
                   {data && data.length && data[0].tags?.length &&
-                      data[0].tags.map((tag) => (
-                        <li>
+                      data[0].tags.map((tag, index) => (
+                        <li key={index}>
                           <a href="">{tag}</a>
                         </li>
                     ))}
