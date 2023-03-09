@@ -99,11 +99,14 @@ const Quiz = ({ quizData, isModelOpen }) => {
       ) : (
         <div className="result">
           {response.data.status && response.data?.canShowAddress ? (
-            <h1>hiiiiii</h1>
+            // <h1>hiiiiii</h1>
+            <Form />
+
           ) : response.data.status && !response.data?.canShowAddress ? (
             <Form />
           ) : (
-            <h3>byeeeee</h3>
+            // <h3>byeeeee</h3>
+            <Form />
           )}
         </div>
       )}

@@ -21,10 +21,7 @@ const UserSchema = new Schema(
         contact: {
             type: Number
         },
-        address1: {
-            type: String
-        },
-        address2: {
+        address: {
             type: String
         },
         pincode: {

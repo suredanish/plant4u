@@ -28,9 +28,8 @@ router.post('/address', async( req, res) => {
         const newUser = new User({
             username: req.body.username,
             email: req.body.email,
-            address1: req.body.address1,
-            address2: req.body.address2,
             contact: req.body.contact,
+            address: req.body.address,
             pincode: req.body.pincode,
             productId: blogId
         });
