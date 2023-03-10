@@ -4,6 +4,7 @@ import MainBody from "./components/main/main-body";
 import Blog from "./components/blog/Blog";
 import About from "./components/home/about";
 import Contact from "./components/home/contact";
+import Success from "./components/template/success"
 
 function App() {
   return (

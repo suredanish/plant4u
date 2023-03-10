@@ -12,7 +12,7 @@ const sendEmail = (to, body) => {
             to: {
                 email: to,
             },
-            subject: 'contact',
+            subject: 'Order Placed Successfully',
             content: [
               {
                 type: 'text/html',

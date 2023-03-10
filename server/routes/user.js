@@ -23,7 +23,7 @@ const mongoose = require('mongoose');
  */
 router.post('/address', async( req, res) => {
     try {
-
+        
         const blogId = '63f0e1f6fb8b742c6864ba57';
         const newUser = new User({
             username: req.body.username,

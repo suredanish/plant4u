@@ -101,4 +101,19 @@ router.post('/quiz/answers', async ( req, res) => {
     }
 
 })
+
+/**
+ * @description Post /api/blog/
+ */
+
+
+// router.post('/quiz/answers/success', async ( req, res) => {
+//     try{
+//         console.log('**');
+//     }
+//     catch ( error ) {
+//         return res.status(400).send({message: 'something went wrong!' , success: false}) ;
+//     }
+
+// })
 module.exports = router;

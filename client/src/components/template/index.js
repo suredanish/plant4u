@@ -3,6 +3,7 @@ import GoldenPothos from "./goldenPothos";
 import MajesticPalm from "./majesticPalm";
 import StringPearl from "./stringPearl";
 import HeartLeafPhilodendron from "./heartLeafPhilodendron";
+import Success from "./success";
 
 const template = (data) => {
     if(data.metaDescription === 'peaceLilly') {
@@ -23,6 +24,9 @@ const template = (data) => {
     else if(data.metaDescription === 'heartLeafPhilodendron')  {
         return <HeartLeafPhilodendron />
     }
+    // else if(data.metaDescription === 'success')  {
+    //     return <Success />
+    // }
     return;
 };
   
