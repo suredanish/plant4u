@@ -15,6 +15,8 @@ function App() {
         <Route path="/blog/:params" element={<Blog />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element ={<Contact />} />
+        <Route path="/address/success" element ={<Success />} />
+
       </Routes>
     </div>
   );

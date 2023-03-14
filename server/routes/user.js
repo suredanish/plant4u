@@ -36,12 +36,7 @@ router.post('/address', async( req, res) => {
 
         newUser
             .save()
-            .then(async userData => {
-                return res.status(200).send({
-                    success: true,
-                    message: 'User Updated successfully'
-                });
-            })
+            .then()
             .catch(err => {
                 console.log(err, "Error is here")
                 return res.send({
@@ -57,6 +52,11 @@ router.post('/address', async( req, res) => {
         if(getBlogDetails.meta.GrabOfferCount == process.env.offerLimit) {
             const _ = await Blog.updateOne({_id: mongoose.Types.ObjectId(blogId)}, { "meta.isOfferValid": false})
         }
+        
+        return res.status(200).send({
+            success: true,
+            message: 'User Updated successfully'
+        });
 
     }
     catch ( error ) {

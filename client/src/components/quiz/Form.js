@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import Success from  "./../template/success"
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import {
-    MDBInput,
-    MDBBtn
-  } from 'mdb-react-ui-kit';
-
-
+import { MDBInput } from 'mdb-react-ui-kit';
 
 const Form = () => {
   const [username, setUserName] = useState('');
@@ -16,6 +10,7 @@ const Form = () => {
   const [contact, setContact] = useState('');
   const [address, setAddress] = useState('');
   const [pincode, setPincode] = useState('');
+  const navigate = useNavigate();
 
   const setAddressDetails = (e, type)=>{
     if(type==='username')
@@ -30,27 +25,26 @@ const Form = () => {
         setPincode(e.target.value)           
   }
 
-  const onClickNext = () => {
+  const onClickNext = async  () => {
       
       const message = "Thank you for Order";
       const subject = "Order Placed" 
 
         axios.all([
+          // Saving Form details in Db
+          axios.post("/api/User/address", {username, email, contact, address, pincode}),
             // Send Email
-            axios.post("/api/contact/", {email, username, message, subject}), 
-
-            //   // Saving Form details in Db
-            axios.post("api/User/address", {username, email, contact, address, pincode})])
+          axios.post("api/contact", {email, username, message, subject})
+            ])
            .then(axios.spread((data1, data2) => {
-            console.log('data1', data1, 'data2', data2)
+            console.log('data1', data1, 'data2', data2)  
           }))
            .catch((error) => {
             console.log( 'Error' + error);
         });;
 
         // Rendering Success Page
-        // return <Success />
-        return redirect("./../template/success")        
+        navigate('/address/success');       
 
     };
 
@@ -64,9 +58,8 @@ const Form = () => {
       required='true' placeholder="Address"/>
       <MDBInput wrapperClass='mb-4' type="number" onChange={(e)=>{setAddressDetails(e, 'pincode')}} required='true' placeholder="PinCode" maxLength="6"/>
 
-      <MDBBtn className='me-1' color='success' type='submit' onClick={onClickNext}>
-        Submit
-      </MDBBtn>
+      <button type='submit' onClick={onClickNext} > Submit </button>
+
     </form>
     )
 };
