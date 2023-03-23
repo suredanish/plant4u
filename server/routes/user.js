@@ -25,8 +25,12 @@ router.post('/address', async( req, res) => {
     try {
         
         const blogId = '63f0e1f6fb8b742c6864ba57';
+
         const newUser = new User({
-            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            state: req.body.state,
+            city: req.body.city,
             email: req.body.email,
             contact: req.body.contact,
             address: req.body.address,

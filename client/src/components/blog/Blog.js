@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import moment from 'moment';
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-
 import Template from "../template";
 import Quiz from "../quiz/Quiz";
 import "./Blog.css";
@@ -30,7 +29,7 @@ const Blog = () => {
   useEffect(() => {
     if(query.params) {
       setMetaDescription(query.params)
-      fetch(`/api/blog/${query.params}`)
+      fetch(`/api/blog/params/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
           setData(actualData);

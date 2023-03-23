@@ -13,7 +13,4 @@ const success = ()=>{
                 </div>
               );
 }
-
-
-
-    export default success;
+export default success;

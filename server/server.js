@@ -45,7 +45,8 @@ const userRoutes = require('./routes/user');
 const middleware = require('./middleware/verfiyToken');
 const googleServiceRoutes = require('./routes/googleService');
 const contactRoutes = require('./routes/contact');
-
+const paymentRoutes = require('./routes/payment');
+const orderRoutes = require('./routes/order');
 
 app.use(
     morgan('combined', {
@@ -76,6 +77,8 @@ app.use('/api/session', sessionRoutes);
 app.use('/api/event', eventRoutes);
 app.use('/api/token', tokenRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/payment', paymentRoutes);
+app.use('/api/order', orderRoutes);
 
 
 if (process.env.NODE_ENV !== 'production') {
