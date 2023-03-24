@@ -67,14 +67,7 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/order', orderRoutes);
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
->>>>>>> 2097719 (razor pay implemented)
-
-=======
->>>>>>> 486e545 (conflict resolved)
 if (process.env.NODE_ENV !== 'production') {
     logger.add(
         new winston.transports.Console({
