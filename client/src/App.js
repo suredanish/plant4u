@@ -4,7 +4,9 @@ import MainBody from "./components/main/main-body";
 import Blog from "./components/blog/Blog";
 import About from "./components/home/about";
 import Contact from "./components/home/contact";
-import Success from "./components/template/success"
+import Success from "./components/success/success"
+import CheckoutPage from "./components/PageCheckout/CheckoutPage"
+import Payment from "./components/payment/payment";
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element ={<Contact />} />
         <Route path="/address/success" element ={<Success />} />
-
+        <Route path="/checkout" element ={<CheckoutPage />} />
+        <Route path="/payment" element ={<Payment />} />
+        <Route path="/success" element ={<Success />} />
       </Routes>
     </div>
   );

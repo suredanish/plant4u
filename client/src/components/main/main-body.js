@@ -314,7 +314,6 @@ const MainBody = () => {
                     </a>
                     <div className="post-meta">
                       <span className="date"></span>{" "}
-                      {/* <span className="mx-1">&bullet;</span>{" "} */}
                       <span>March 5th '23</span>
                     </div>
                     <h2 className="mb-2">
@@ -323,11 +322,6 @@ const MainBody = () => {
                       </a>
                     </h2>
                     <span className="author mb-3 d-block">plant4u</span>
-                    {/* <p className="mb-4 d-block">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Vero temporibus repudiandae, inventore pariatur numquam
-                      cumque possimus
-                    </p> */}
                   </div>
 
 
@@ -343,7 +337,6 @@ const MainBody = () => {
                     </a>
                     <div className="post-meta">
                       <span className="date"></span>{" "}
-                      {/* <span className="mx-1">&bullet;</span>{" "} */}
                       <span>March 3rd '23</span>
                     </div>
                     <h2 className="mb-2">
@@ -364,7 +357,6 @@ const MainBody = () => {
               <div className="post-entry-1 border-bottom">
                 <div className="post-meta">
                   <span className="date"></span>{" "}
-                  {/* <span className="mx-1">&bullet;</span>{" "} */}
                   <span>1 march 2023</span>
                 </div>
                 <h2 className="mb-2">
@@ -389,7 +381,6 @@ const MainBody = () => {
               <div className="post-entry-1 border-bottom">
                 <div className="post-meta">
                   <span className="date"></span>{" "}
-                  {/* <span className="mx-1">&bullet;</span>{" "} */}
                   <span>3 march 2023</span>
                 </div>
                 <h2 className="mb-2">
@@ -414,7 +405,6 @@ const MainBody = () => {
               <div className="post-entry-1 border-bottom">
                 <div className="post-meta">
                   <span className="date"></span>{" "}
-                  {/* <span className="mx-1">&bullet;</span>{" "} */}
                   <span>4 march 2023</span>
                 </div>
                 <h2 className="mb-2">
@@ -439,7 +429,6 @@ const MainBody = () => {
               <div className="post-entry-1 border-bottom">
                 <div className="post-meta">
                   <span className="date"></span>{" "}
-                  {/* <span className="mx-1">&bullet;</span>{" "} */}
                   <span>6 march 2023</span>
                 </div>
                 <h2 className="mb-2">

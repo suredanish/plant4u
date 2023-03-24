@@ -30,7 +30,7 @@ const Blog = () => {
   useEffect(() => {
     if(query.params) {
       setMetaDescription(query.params)
-      fetch(`/api/blog/${query.params}`)
+      fetch(`/api/blog/params/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
           setData(actualData);

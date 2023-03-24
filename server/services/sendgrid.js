@@ -1,6 +1,5 @@
 const client = require('@sendgrid/mail');
 client.setApiKey(process.env.SENDGRID_API_KEY);
-const { EmailTemplate } = require('./Emailtemplate')
 
 const sendEmail = (to, body) => {
     try {
@@ -16,7 +15,7 @@ const sendEmail = (to, body) => {
             content: [
               {
                 type: 'text/html',
-                value: EmailTemplate(body)
+                value: body
               }
             ]
           };
