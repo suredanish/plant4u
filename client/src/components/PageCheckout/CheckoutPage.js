@@ -152,7 +152,6 @@ const CheckoutPage = () => {
 
   const ConfirmOrder = () => {
     try {
-
         const body = {
           email: email,
           contact: contact,

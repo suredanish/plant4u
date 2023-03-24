@@ -67,6 +67,10 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/order', orderRoutes);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2097719 (razor pay implemented)
 
 if (process.env.NODE_ENV !== 'production') {
     logger.add(
