@@ -7,10 +7,9 @@ const crypto = require('crypto')
 const mongoose = require('mongoose'); 
 const { successTemplate } = require('../template/success')
 const sendEmail = require('../services/sendgrid')
-// const {}
 
 router.post('/', async(req,res) =>{
-    const keysecret = 'A63I3t7QoDkrmTitQbXHvNwK'
+    const keysecret = process.env.RAZORPAY_KEY_SECRET
     const generated_signature = crypto.createHmac('sha256',keysecret)
     generated_signature.update(req.body.razorpay_order_id+"|"+ req.body.transactionid)
 

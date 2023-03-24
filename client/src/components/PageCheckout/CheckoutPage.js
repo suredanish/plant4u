@@ -85,36 +85,43 @@ const CheckoutPage = () => {
     refAnimationInstance.current && refAnimationInstance.current.reset();
   }, [intervalId]);
 
+  const getBlogData = async() => {
+    if(localStorage.getItem('productData')) {
+      const jsonData = JSON.parse(localStorage.getItem('productData'));
+      setLocalStorage(jsonData)
+      const productData = await axios.get(`api/blog/${jsonData.id}`)
+
+      if(productData && productData.data && productData.data.length) {
+        setProduct(productData.data)
+        setLoading(false)
+      }
+    }
+  }
+
   React.useEffect(() => {
     return () => {
       clearInterval(intervalId);
     };
+
   }, [intervalId]);
 
-  React.useEffect(async() => {
-      if(localStorage.getItem('productData')) {
-        const jsonData = JSON.parse(localStorage.getItem('productData'));
-        setLocalStorage(jsonData)
-        const productData = await axios.get(`api/blog/${jsonData.id}`)
-
-        if(productData && productData.data && productData.data.length) {
-          setProduct(productData.data)
-          setLoading(false)
-        }
-      
-      }
+  React.useEffect(() => {
+      getBlogData()
   },[])
 
   React.useEffect(() => {
     if(shippingDetails && (email || contact)) {
       saveAddress()
     }
+    return () => {}
+
   }, [email])
 
   React.useEffect(() => {
     if(shippingDetails && (email || contact)) {
       saveAddress()
     }
+    return () => {}
   }, [shippingDetails])
 
   if(!(localStorage.getItem('productData')) ) {
@@ -145,7 +152,6 @@ const CheckoutPage = () => {
 
   const ConfirmOrder = () => {
     try {
-      console.log(shippingDetails, 'shippingDetails is here')
         const body = {
           email: email,
           contact: contact,
@@ -176,7 +182,8 @@ const CheckoutPage = () => {
                 state: shippingDetails.state,
                 city: shippingDetails.city ,
                 shippingCharge: location.state.shippingCharge
-              }})
+              }
+            })
           }
         }
     }

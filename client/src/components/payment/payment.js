@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Payment = () => {
     const location = useLocation();
     const navigate = useNavigate();
-
+  
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
@@ -24,9 +24,8 @@ const Payment = () => {
     let order_id
 
     const openPayModal = () => {
-
         var options = {
-          "key": 'rzp_test_QQigWdX7dRNhG2',
+          "key": process.env.REACT_APP_RAZORPAY_KEY,
           "amount": amount, // 2000 paise = INR 20, amount in paisa
           "name": "",
           "description": "",
@@ -70,6 +69,7 @@ const Payment = () => {
 
         axios.post('/api/order', {amount: amount, name:name, email:email, contact:contact, address:address, productId:productId, state:state, pincode:pincode, city:city })
         .then(res=>{
+          console.log(res, 'response is hereeee')
             options.order_id = res.data.id;
             options.amount = res.data.amount;
             order_id = res.data.order_id;

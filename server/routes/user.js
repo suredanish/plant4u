@@ -53,7 +53,7 @@ router.post('/address', async( req, res) => {
         const getBlogDetails = await Blog.findOne({_id: mongoose.Types.ObjectId(blogId) })
         const _ = await Blog.updateOne({_id: mongoose.Types.ObjectId(blogId)}, { $inc: { "meta.GrabOfferCount": 1 }})
 
-        if(getBlogDetails.meta.GrabOfferCount == process.env.offerLimit) {
+        if(getBlogDetails.meta.GrabOfferCount == process.env.OFFER_LIMIT) {
             const _ = await Blog.updateOne({_id: mongoose.Types.ObjectId(blogId)}, { "meta.isOfferValid": false})
         }
         

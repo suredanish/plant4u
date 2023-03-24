@@ -155,24 +155,6 @@ const ShippingAddress = ({isActive, onCloseActive, onOpenActive}) => {
           </div>
 
           {/* ============ */}
-          {/* <div>
-            <Label className="text-sm">Address type</Label>
-            <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              <Radio
-                label={`<span class="text-sm font-medium">Home <span class="font-light">(All Day Delivery)</span></span>`}
-                id="Address-type-home"
-                name="Address-type"
-                defaultChecked
-              />
-              <Radio
-                label={`<span class="text-sm font-medium">Office <span class="font-light">(Delivery <span class="font-medium">9 AM - 5 PM</span>)</span> </span>`}
-                id="Address-type-office"
-                name="Address-type"
-              />
-            </div>
-          </div> */}
-
-          {/* ============ */}
           <div className="flex flex-col sm:flex-row pt-6">
             <ButtonPrimary
               className="sm:!px-7 shadow-none"

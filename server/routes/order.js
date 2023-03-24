@@ -6,10 +6,10 @@ const {Order} = require('../models/Order')
 router.post('/', async (req,res) => {
 try {
     var instance = new Razorpay({
-        key_id: 'rzp_test_QQigWdX7dRNhG2',
-        key_secret: 'A63I3t7QoDkrmTitQbXHvNwK'
+        key_id: process.env.RAZORPAY_KEY,
+        key_secret: process.env.RAZORPAY_KEY_SECRET
       })
-  
+
     var options = {
       amount: req.body.amount,  // amount in the smallest currency unit
       currency: "INR",
@@ -31,7 +31,7 @@ try {
               state: req.body.state,
               pincode: req.body.pincode,
               productId: req.body.productId,
-              amount: req.body.amount,
+              amount: (req.body.amount/ 100),
               city: req.body.city,
               payment_status: 0,
               status: 1,
@@ -41,9 +41,10 @@ try {
           order.order_id = orderData._id
           return res.json(order)}
     });
-    }
+
+  }
  catch ( error ) {
-    console.log(error, "Error is heree")
+    console.log(error, "error is hereeee")
     return res.status(401).send({status: false, message:'Error while saving Order'})
  }
 });

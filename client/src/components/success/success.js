@@ -34,15 +34,12 @@ const Success = () => {
 
     React.useEffect(async()=> {
         const productData =  await axios.get(`/api/blog/${productId}`);
-        console.log(productData.data[0], 'product data is here')
         if(productData && productData.data && productData.data.length) {
             setProductDetails(productData.data[0])
         }
-        console.log(productDetails, 'productDetails is hereeeee')
         setLoading(false)
      },[])
-     console.log(productDetails, 'productDetails is hereeeee')
-    //  console.log(productDetails, 'productDetails is here')
+
     if(!productDetails) {
         return (
             <ClipLoader

@@ -3,12 +3,9 @@ import { useNavigate } from "react-router-dom";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import "./Quiz.css";
 import axios from "axios";
-import Form from "./Form";
-import CheckoutPage from "../PageCheckout/CheckoutPage";
-
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import success from "../template/success";
+
 
 function randomInRange(min, max) {
   return Math.random() * (max - min) + min;

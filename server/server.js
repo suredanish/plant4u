@@ -3,7 +3,6 @@ if (process.env.HEROKU_DEPLOYMENT !== 'true') {
     // Skip loading the .env file if deploying with heroku
     require('dotenv').config();
 }
-
 /** Connect to MongoDB */
 require('./db/mongoose');
 
@@ -35,15 +34,8 @@ const blogRoutes = require('./routes/blog');
 
 /** Routes */
 
-
 const authRoutes = require('./routes/auth');
-const courseRoutes = require('./routes/course');
-const sessionRoutes = require('./routes/session');
-const eventRoutes = require('./routes/event');
-const tokenRoutes = require('./routes/token');
 const userRoutes = require('./routes/user');
-const middleware = require('./middleware/verfiyToken');
-const googleServiceRoutes = require('./routes/googleService');
 const contactRoutes = require('./routes/contact');
 const paymentRoutes = require('./routes/payment');
 const orderRoutes = require('./routes/order');
@@ -72,14 +64,9 @@ app.use('/api/user', userRoutes);
 /** Middleware */
 
 app.use('/api/blog', blogRoutes);
-app.use('/api/course', courseRoutes);
-app.use('/api/session', sessionRoutes);
-app.use('/api/event', eventRoutes);
-app.use('/api/token', tokenRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/order', orderRoutes);
-
 
 if (process.env.NODE_ENV !== 'production') {
     logger.add(
