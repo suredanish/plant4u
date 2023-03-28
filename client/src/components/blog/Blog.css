@@ -45,3 +45,15 @@
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
+
+.buy-button {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem;
+  margin: auto;
+  border: none;
+  background-color: #4ade80;
+  color: #fff;
+  border-radius: 8rem;
+  cursor: pointer;
+}

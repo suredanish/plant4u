@@ -6,9 +6,9 @@ const Header = () => {
         <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="/" className="logo d-flex align-items-center">
-            {/* <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.png" alt=""> --> */}
-            <h1>ZZi</h1>
+  
+            <img src="https://hesoyam.s3.amazonaws.com/plant4u/img/logo.jpg" style={{borderRadius: '50%'}} alt="" />
+            <h1>plant4u</h1>
             </a>
 
             <nav id="navbar" className="navbar">

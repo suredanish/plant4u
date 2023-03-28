@@ -4,6 +4,7 @@ const { Blog } = require('../models/Blog');
 const { TrendingBlog } = require('../models/TrendingBlog');
 const os = require('os');
 const multer = require('multer');
+const mongoose = require('mongoose');
 
 const multerStorage = multer.diskStorage({
     destination: os.tmpdir(),
@@ -45,10 +46,24 @@ router.get('/trending', async ( req, res) => {
     }
 })
 
+
 /**
  * @description GET /api/blog/
  */
-router.get('/:param', async ( req, res) => {
+router.get('/:id', async ( req, res) => {
+    try {
+        const result = await Blog.find({ _id: mongoose.Types.ObjectId(req.params.id) });
+        return res.status(200).send(result) ;
+    }
+    catch ( error ) {
+        return res.status(400).send({message: 'something went wrong!' , success: false}) ;
+    }
+})
+
+/**
+ * @description GET /api/blog/
+ */
+router.get('/params/:param', async ( req, res) => {
     try {
         const result = await Blog.find({ meta_description: req.params.param });
         return res.status(200).send(result) ;
@@ -71,11 +86,9 @@ router.post('/quiz/answers', async ( req, res) => {
     try{
     const quizID = req.body.id;
     const quiz = await Blog.findById(quizID);
-    //1. if  ansers is false
-    //return status : false
-    console.log(quiz.quiz_answerss)
+
     if(!compareArrays(quiz.quiz_answers, req.body.answers)){
-        res.status(200).json({
+        return res.status(200).json({
             status: false
         })
     }
@@ -83,7 +96,7 @@ router.post('/quiz/answers', async ( req, res) => {
      //return status : true , canShowAddress: false
     else if(compareArrays(quiz.quiz_answers, req.body.answers) && quiz.meta.isOfferValid === false)
     {
-        res.status(200).json({
+        return res.status(200).json({
             status: true,
             canShowAddress: false
         })
@@ -91,7 +104,7 @@ router.post('/quiz/answers', async ( req, res) => {
     //1. if all ansers is correct and isofferValid true
     //return status : true , canShowAddress: true
     else if(compareArrays(quiz.quiz_answers, req.body.answers) && quiz.meta.isOfferValid === true){
-        res.status(200).json({
+        return res.status(200).json({
             status: true,
             canShowAddress: true
         })

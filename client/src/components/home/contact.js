@@ -22,10 +22,7 @@ const Contact = () => {
                 "Content-Type": "application/json",
              }
          });
-        // console.log(response, 'response is hereeee')
-        // if(response) {
 
-        // }
     }
 
     return (

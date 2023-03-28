@@ -8,14 +8,17 @@ const UserSchema = new Schema(
         productId: {
             type: String,
         },
-        username: {
+        firstName: {
+            type: String,
+            trim: true,
+        },
+        lastName: {
             type: String,
             trim: true,
         },
         email: {
             type: String,
             trim: true,
-            unique: true,
             sparse: true
         },
         contact: {
@@ -27,10 +30,12 @@ const UserSchema = new Schema(
         pincode: {
             type: Number
         },
-        location: {
-            type: String,
-            default: null
+        state: {
+            type: String
         },
+        city: {
+            type: String
+        }
     },
 
     {
