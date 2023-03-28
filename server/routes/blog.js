@@ -86,7 +86,6 @@ router.post('/quiz/answers', async ( req, res) => {
     try{
     const quizID = req.body.id;
     const quiz = await Blog.findById(quizID);
-
     if(!compareArrays(quiz.quiz_answers, req.body.answers)){
         return res.status(200).json({
             status: false
