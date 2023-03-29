@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import Label from "../Label/Label.js";
 import Prices from "./Prices.js";
 import { useState } from "react";
@@ -8,9 +8,9 @@ import Input from "../../shared/Input/Input.tsx";
 import ContactInfo from "./ContactInfo.js";
 import ShippingAddress from "./ShippingAddress.js";
 import axios from "axios";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import ReactCanvasConfetti from "react-canvas-confetti";
-import {toast, ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const canvasStyles = {
   width: "100%",
   height: "100%",
   top: 0,
-  left: 0
+  left: 0,
 };
 
 function getAnimationSettings(originXA, originXB) {
@@ -36,18 +36,17 @@ function getAnimationSettings(originXA, originXB) {
     particleCount: 150,
     origin: {
       x: randomInRange(originXA, originXB),
-      y: Math.random() - 0.2
-    }
+      y: Math.random() - 0.2,
+    },
   };
 }
 
 const CheckoutPage = () => {
-
-  const [tabActive, setTabActive] = useState("ContactInfo")
-  const [email, setemail] = useState(null)
-  const [contact, setContact] = useState(null)
-  const [shippingDetails , setShippingDetails] = useState(null)
-  const [product, setProduct] = useState(null)
+  const [tabActive, setTabActive] = useState("ContactInfo");
+  const [email, setemail] = useState(null);
+  const [contact, setContact] = useState(null);
+  const [shippingDetails, setShippingDetails] = useState(null);
+  const [product, setProduct] = useState(null);
   const refAnimationInstance = React.useRef(null);
   const [intervalId, setIntervalId] = useState();
   const [localStorageData, setLocalStorage] = useState(null);
@@ -55,7 +54,7 @@ const CheckoutPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('location state value is here', location.state)
+  console.log("location state value is here", location.state);
   const override = {
     display: "block",
     margin: "200 auto",
@@ -85,102 +84,105 @@ const CheckoutPage = () => {
     refAnimationInstance.current && refAnimationInstance.current.reset();
   }, [intervalId]);
 
-  const getBlogData = async() => {
-      const productData = await axios.get(`api/blog/${location.state.id}`)
-      if(productData && productData.data && productData.data.length) {
-        setProduct(productData.data)
-        setLoading(false)
-      }
-  }
+  const getBlogData = async () => {
+    const productData = await axios.get(`api/blog/${location.state.id}`);
+    if (productData && productData.data && productData.data.length) {
+      setProduct(productData.data);
+      setLoading(false);
+    }
+  };
 
   React.useEffect(() => {
     return () => {
       clearInterval(intervalId);
     };
-
   }, [intervalId]);
 
   React.useEffect(() => {
-      getBlogData()
-  },[])
+    getBlogData();
+  }, []);
 
   React.useEffect(() => {
-    if(shippingDetails && (email || contact)) {
-      saveAddress()
+    if (shippingDetails && (email || contact)) {
+      saveAddress();
     }
-    return () => {}
-
-  }, [email])
+    return () => {};
+  }, [email]);
 
   React.useEffect(() => {
-    if(shippingDetails && (email || contact)) {
-      saveAddress()
+    if (shippingDetails && (email || contact)) {
+      saveAddress();
     }
-    return () => {}
-  }, [shippingDetails])
+    return () => {};
+  }, [shippingDetails]);
 
   React.useEffect(() => {
-    if(location.state.status && location.state.hasInventory) {
-      startAnimation()
-      toast.success('successful', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
+    if (location.state.status && location.state.hasInventory) {
+      startAnimation();
+      toast.success("successful", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 15000,
+      });
       setTimeout(() => {
-        stopAnimation()
-      }, 10000)
+        stopAnimation();
+      }, 10000);
+    } else if (location.state.status && !location.state.hasInventory) {
+      toast.info(
+        "We have reached our limit for Free plant but you can buy this plant.",
+        { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+      );
+    } else if (!location.state.status) {
+      toast.info(
+        "We have reached our limit for Free plant but you can buy this plant.",
+        { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+      );
     }
-    else if(location.state.status && !location.state.hasInventory) {
-      toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-    }
-    else if(!location.state.status) {
-      toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-    }
-  }, [])
-
+  }, []);
 
   const ConfirmOrder = () => {
     try {
+      const body = {
+        email: email,
+        contact: contact,
+        firstName: shippingDetails?.firstname,
+        lastName: shippingDetails?.lastname,
+        address: shippingDetails?.address,
+        city: shippingDetails?.city,
+        state: shippingDetails?.state,
+        pincode: shippingDetails?.pinCode,
+      };
+      const hasError = validateAddressBody(body);
 
-        const body = {
-          email: email,
-          contact: contact,
-          firstName: shippingDetails?.firstname,
-          lastName: shippingDetails?.lastname,
-          address: shippingDetails?.address,
-          city: shippingDetails?.city,
-          state: shippingDetails?.state,
-          pincode: shippingDetails?.pinCode
+      if (!hasError) {
+        let paymentAmount =
+          Number(product[0].price) + Number(location.state.shippingCharge);
+        localStorage.removeItem("productData");
+        if (paymentAmount == 0) {
+          //need to refresh or moved to some other success component
+          navigate("/");
+        } else {
+          navigate("/payment", {
+            state: {
+              amount: paymentAmount,
+              name: shippingDetails?.firstname,
+              email: email,
+              contact: contact,
+              productId: product[0]._id,
+              address: shippingDetails.address,
+              pincode: shippingDetails.pinCode,
+              state: shippingDetails.state,
+              city: shippingDetails.city,
+              shippingCharge: location.state.shippingCharge,
+            },
+          });
         }
-        const hasError = validateAddressBody(body)
-
-        if(!hasError) {
-          let paymentAmount = Number(product[0].price) + Number(location.state.shippingCharge)
-          localStorage.removeItem('productData')
-          if(paymentAmount == 0) {
-            //need to refresh or moved to some other success component
-            navigate("/")
-          } else {
-            navigate('/payment', {
-              state: {
-                amount: paymentAmount,
-                name: shippingDetails?.firstname,
-                email: email, 
-                contact: contact,
-                productId: product[0]._id,
-                address: shippingDetails.address, 
-                pincode: shippingDetails.pinCode, 
-                state: shippingDetails.state,
-                city: shippingDetails.city ,
-                shippingCharge: location.state.shippingCharge
-              }
-            })
-          }
-        }
-    }
-    catch ( error) {
+      }
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  const saveAddress = async() => {
+  const saveAddress = async () => {
     const body = {
       email: email,
       contact: contact,
@@ -189,13 +191,13 @@ const CheckoutPage = () => {
       address: shippingDetails.address,
       city: shippingDetails.city,
       state: shippingDetails.state,
-      pincode: shippingDetails.pinCode
-    }
-    const hasError = validateAddressBody(body)
-    if(!hasError) {
+      pincode: shippingDetails.pinCode,
+    };
+    const hasError = validateAddressBody(body);
+    if (!hasError) {
       const res = await axios.post("api/user/address", body);
     }
-  }
+  };
 
   const handleScrollToEl = (id) => {
     const element = document.getElementById(id);
@@ -209,30 +211,29 @@ const CheckoutPage = () => {
 
     return (
       <div key={index} className="relative flex py-7 first:pt-0 last:pb-0">
-        <div className="relative h-36 w-24 sm:w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+        <div className="relative h-36 w-24 sm:w-28 flex-shrink-0 overflow-hidden rounded-xl">
           <img
-             src={`./img/${meta_description}/${front_image}`}
+            src={`./img/${meta_description}/${front_image}`}
             alt={title}
             className="h-full w-full object-contain object-center"
           />
-          <Link to="/product-detail" className="absolute inset-0"></Link>
         </div>
 
-        <div className="ml-3 sm:ml-6 flex flex-1 flex-col">
-        <div>
-          <div className="flex justify-between ">
-            <div className="flex-[1.5] ">
-              <h3 className="text-base font-semibold">
-                <Link to="/product-detail">{title}</Link>
-              </h3>
-            </div>
+        <div className="ml-3 sm:ml-6 flex flex-1 flex-col justify-content-center">
+          <div>
+            <div className="flex justify-between ">
+              <div className="flex-[1.5] ">
+                <h4 className="font-semibold">
+                  <Link to="/product-detail">{title}</Link>
+                </h4>
+              </div>
 
-            <div className="hidden flex-1 sm:flex justify-end">
-              <Prices price={price} className="mt-0.5" />
+              <div className=" flex-1 sm:flex justify-end">
+                <Prices price={price} className="mt-0.5" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     );
   };
@@ -249,7 +250,7 @@ const CheckoutPage = () => {
             }}
             onCloseActive={(contact, email) => {
               setemail(email);
-              setContact(contact)
+              setContact(contact);
               //call API HERE FOR SAVE USERINFO
               setTabActive("ShippingAddress");
               handleScrollToEl("ShippingAddress");
@@ -265,11 +266,14 @@ const CheckoutPage = () => {
               handleScrollToEl("ShippingAddress");
             }}
             onCloseActive={(shippingDetails) => {
-              console.log(shippingDetails, 'shippingDetails is hereee')
-              setShippingDetails(shippingDetails)
+              console.log(shippingDetails, "shippingDetails is hereee");
+              setShippingDetails(shippingDetails);
               setTabActive("");
               handleScrollToEl("ContactInfo");
-              toast.success('successfully saved shipping address', {position: toast.POSITION.TOP_RIGHT, autoClose:2500})
+              toast.success("successfully saved shipping address", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 2500,
+              });
             }}
           />
         </div>
@@ -278,37 +282,40 @@ const CheckoutPage = () => {
   };
 
   const validateAddressBody = (body) => {
-    let isError = false
+    let isError = false;
     Object.keys(body).every((res) => {
-      if(body[res] == undefined || body[res]== "" || body[res] == null) {
-          isError = true
-          toast.error(`${res} can not be empty!`, {position: toast.POSITION.TOP_RIGHT, autoClose:2000})
-          return false
-        }
-      return true
-    })
+      if (body[res] == undefined || body[res] == "" || body[res] == null) {
+        isError = true;
+        toast.error(`${res} can not be empty!`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000,
+        });
+        return false;
+      }
+      return true;
+    });
     return isError;
-  }
+  };
 
-  if(!(product)) {
+  if (!product) {
     return (
       <ClipLoader
-      color={color}
-      loading={loading}
-      cssOverride={override}
-      size={100}
-      aria-label="Loading Spinner"
-      data-testid="loader"
-    />
-    )
+        color={color}
+        loading={loading}
+        cssOverride={override}
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
   }
 
   return (
     <div className="nc-CheckoutPage">
-        <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-        <ToastContainer />
+      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
+      <ToastContainer />
       <main className="container py-16 lg:pb-28 lg:pt-20 ">
-        <div className="mb-16">
+        <div className="mb-16 mt-4">
           <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">
             Checkout
           </h2>
@@ -339,28 +346,43 @@ const CheckoutPage = () => {
               <div className="mt-4 flex justify-between py-2.5">
                 <span>Item Total</span>
                 <span className="font-semibold text-slate-900 dark:text-slate-200">
-                ₹{product[0].price}
+                  ₹{product[0].price}
                 </span>
               </div>
-              {location.state.price == 0 ? 
+              {location.state.price == 0 ? (
                 <div className="flex justify-between py-2.5">
                   <span>Item Discount</span>
-                  <span style={{ color: 'green'}}className="font-semibold text-slate-900 dark:text-slate-200">
-                  - ₹{product[0].price}
+                  <span
+                    style={{ color: "green" }}
+                    className="font-semibold text-slate-900 dark:text-slate-200"
+                  >
+                    - ₹{product[0].price}
                   </span>
-                </div>:''}
+                </div>
+              ) : (
+                ""
+              )}
               <div className="flex justify-between py-2.5">
                 <span>Shipping Estimate</span>
                 <span className="font-semibold text-slate-900 dark:text-slate-200">
-                ₹{location.state.shippingCharge}
+                  ₹{location.state.shippingCharge}
                 </span>
               </div>
               <div className="flex justify-between font-semibold text-slate-900 dark:text-slate-200 text-base pt-4">
                 <span>To Pay</span>
-                <span>₹{Number(location.state.shippingCharge) + (location.state.price == 0 ? 0 : Number(product[0].price))}</span>
+                <span>
+                  ₹
+                  {Number(location.state.shippingCharge) +
+                    (location.state.price == 0 ? 0 : Number(product[0].price))}
+                </span>
               </div>
             </div>
-            <ButtonPrimary onClick={()=> {ConfirmOrder()}} className="mt-8 w-full">
+            <ButtonPrimary
+              onClick={() => {
+                ConfirmOrder();
+              }}
+              className="mt-8 w-full"
+            >
               Confirm order
             </ButtonPrimary>
           </div>

@@ -7604,7 +7604,7 @@ select {
   }
   .sm\:text-base {
     font-size: 1rem;
-    line-height: 1.5rem;
+    line-height: 0.9rem;
   }
   .sm\:text-4xl {
     font-size: 2.25rem;
