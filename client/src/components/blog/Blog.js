@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState  } from "react";
 import moment from 'moment';
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Template from "../template";
 import Quiz from "../quiz/Quiz";
 import "./Blog.css";
+import { useNavigate } from "react-router-dom";
 
 const Blog = () => {
-
+  const navigate = useNavigate()
   const query = useParams();
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [data, setData] = useState([]);
@@ -62,6 +63,10 @@ const Blog = () => {
   const closeModal = function () {
     setIsModelOpen(false);
   };
+
+  const buyNow = () => {
+    navigate("/checkout", {state:{id: data[0]._id, status:"success", price: data[0]?.price, shippingCharge: 100}})
+  }
 
   if(!data.length) {
     return (
@@ -122,10 +127,11 @@ const Blog = () => {
                 <button className="show-modal" onClick={openModal}>
                   Let's play a quiz
                 </button>
-
                 {/* Quiz form ends here */}
               </div>
+ 
               <div className="col-md-3">
+              <button className="buy-button" onClick={buyNow} >Buy Now</button>
                 <div className="aside-block">
                   <ul
                     className="nav nav-pills custom-tab-nav mb-4"
@@ -204,6 +210,7 @@ const Blog = () => {
                     ))}
                   </ul>
                 </div>
+
               </div>
             </div>
           </div>

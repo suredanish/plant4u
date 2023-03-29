@@ -55,7 +55,7 @@ const CheckoutPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-
+  console.log('location state value is here', location.state)
   const override = {
     display: "block",
     margin: "200 auto",
@@ -86,16 +86,11 @@ const CheckoutPage = () => {
   }, [intervalId]);
 
   const getBlogData = async() => {
-    if(localStorage.getItem('productData')) {
-      const jsonData = JSON.parse(localStorage.getItem('productData'));
-      setLocalStorage(jsonData)
-      const productData = await axios.get(`api/blog/${jsonData.id}`)
-
+      const productData = await axios.get(`api/blog/${location.state.id}`)
       if(productData && productData.data && productData.data.length) {
         setProduct(productData.data)
         setLoading(false)
       }
-    }
   }
 
   React.useEffect(() => {
@@ -124,34 +119,26 @@ const CheckoutPage = () => {
     return () => {}
   }, [shippingDetails])
 
-  if(!(localStorage.getItem('productData')) ) {
-
-    const data = {
-      id: location.state.id,
-      status: location.state.status,
-      price: location.state.price,
-      shippingCharge: location.state.shippingCharge
-    }
-
-    localStorage.setItem('productData', JSON.stringify(data))
-
-    setLocalStorage(data)
-    if(location.state.status && location.state.price == 0) {
+  React.useEffect(() => {
+    if(location.state.status && location.state.hasInventory) {
       startAnimation()
       toast.success('successful', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
       setTimeout(() => {
         stopAnimation()
       }, 10000)
-    } else if(location.state.status) {
-      toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-    } else if(!location.state.status) {
+    }
+    else if(location.state.status && !location.state.hasInventory) {
       toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
     }
+    else if(!location.state.status) {
+      toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
+    }
+  }, [])
 
-  }
 
   const ConfirmOrder = () => {
     try {
+
         const body = {
           email: email,
           contact: contact,
@@ -166,6 +153,7 @@ const CheckoutPage = () => {
 
         if(!hasError) {
           let paymentAmount = Number(product[0].price) + Number(location.state.shippingCharge)
+          localStorage.removeItem('productData')
           if(paymentAmount == 0) {
             //need to refresh or moved to some other success component
             navigate("/")
@@ -218,6 +206,7 @@ const CheckoutPage = () => {
 
   const renderProduct = (item, index) => {
     const { front_image, price, title, meta_description } = item;
+
     return (
       <div key={index} className="relative flex py-7 first:pt-0 last:pb-0">
         <div className="relative h-36 w-24 sm:w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
@@ -301,7 +290,7 @@ const CheckoutPage = () => {
     return isError;
   }
 
-  if(!(product && localStorageData)) {
+  if(!(product)) {
     return (
       <ClipLoader
       color={color}
