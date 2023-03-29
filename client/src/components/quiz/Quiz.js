@@ -164,9 +164,9 @@ const Quiz = ({ quizData }) => {
       ) : (
         <div className="result">
           {response.data.status && response.data?.canShowAddress ? (
-            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: 0, shippingCharge: 100}})
+            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: 0, shippingCharge: 100, hasInventory: true}})
           ) : response.data.status && !response.data?.canShowAddress ? (
-            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: quizData[0]?.price, shippingCharge: 100}})
+            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: quizData[0]?.price, shippingCharge: 100, hasInventory: false}})
           ) : (
             navigate("/checkout", {state:{id: quizData[0]._id, status:"false", price: quizData[0]?.price, shippingCharge: 100}})
           )}
