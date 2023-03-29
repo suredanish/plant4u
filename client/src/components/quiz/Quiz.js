@@ -78,15 +78,6 @@ const Quiz = ({ quizData }) => {
         setShowResult(true);
         toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
       }
-
-        startAnimation()
-        setShowResult(true);
-        toast.success('successful', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-        setTimeout(() => {
-          stopAnimation()
-        }, 10000)
-  
-      }
       setActiveQuestion(0);
     }
   };
@@ -173,9 +164,9 @@ const Quiz = ({ quizData }) => {
       ) : (
         <div className="result">
           {response.data.status && response.data?.canShowAddress ? (
-            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: 0, shippingCharge: 100, hasInventory:true}})
+            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: 0, shippingCharge: 100}})
           ) : response.data.status && !response.data?.canShowAddress ? (
-            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: quizData[0]?.price, shippingCharge: 100, hasInventory: false}})
+            navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: quizData[0]?.price, shippingCharge: 100}})
           ) : (
             navigate("/checkout", {state:{id: quizData[0]._id, status:"false", price: quizData[0]?.price, shippingCharge: 100}})
           )}
@@ -183,5 +174,6 @@ const Quiz = ({ quizData }) => {
       )}
     </div>
   );
+};
 
 export default Quiz;

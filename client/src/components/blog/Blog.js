@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState  } from "react";
 import moment from 'moment';
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Template from "../template";
 import Quiz from "../quiz/Quiz";
 import "./Blog.css";
+import { useNavigate } from "react-router-dom";
 
 const Blog = () => {
   const navigate = useNavigate()
