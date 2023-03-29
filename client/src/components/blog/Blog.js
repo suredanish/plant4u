@@ -1,5 +1,5 @@
-import React, { useEffect, useState  } from "react";
-import moment from 'moment';
+import React, { useEffect, useState } from "react";
+import moment from "moment";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Template from "../template";
@@ -8,17 +8,17 @@ import "./Blog.css";
 import { useNavigate } from "react-router-dom";
 
 const Blog = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const query = useParams();
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [data, setData] = useState([]);
   const [popularBlogs, setpopularBlogs] = useState([]);
-  const [metaDescription , setMetaDescription] = useState('');
+  const [metaDescription, setMetaDescription] = useState("");
   const [color, setColor] = useState("#ffffff");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [quizData, setQuizData] = useState([])
+  const [quizData, setQuizData] = useState([]);
 
   const override = {
     display: "block",
@@ -26,10 +26,9 @@ const Blog = () => {
     borderColor: "grey",
   };
 
-
   useEffect(() => {
-    if(query.params) {
-      setMetaDescription(query.params)
+    if (query.params) {
+      setMetaDescription(query.params);
       fetch(`/api/blog/params/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
@@ -45,15 +44,15 @@ const Blog = () => {
     }
   }, [isModelOpen]);
 
-  useEffect(()=> {
+  useEffect(() => {
     fetch("/api/blog")
-    .then((res) => res.json())
-    .then((blogList) => {
-      setpopularBlogs(blogList)
-    })
-    .catch((error) => {
-      setpopularBlogs([])
-  }) 
+      .then((res) => res.json())
+      .then((blogList) => {
+        setpopularBlogs(blogList);
+      })
+      .catch((error) => {
+        setpopularBlogs([]);
+      });
   }, []);
 
   const openModal = function () {
@@ -65,20 +64,27 @@ const Blog = () => {
   };
 
   const buyNow = () => {
-    navigate("/checkout", {state:{id: data[0]._id, status:"success", price: data[0]?.price, shippingCharge: 100}})
-  }
+    navigate("/checkout", {
+      state: {
+        id: data[0]._id,
+        status: "success",
+        price: data[0]?.price,
+        shippingCharge: 100,
+      },
+    });
+  };
 
-  if(!data.length) {
+  if (!data.length) {
     return (
       <ClipLoader
-      color={color}
-      loading={loading}
-      cssOverride={override}
-      size={100}
-      aria-label="Loading Spinner"
-      data-testid="loader"
-    />
-    )
+        color={color}
+        loading={loading}
+        cssOverride={override}
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
   }
 
   return (
@@ -96,23 +102,25 @@ const Blog = () => {
               <div className="col-md-9 post-content" data-aos="fade-up">
                 <div className="single-post">
                   <div className="post-meta">
-                    <span className="date">{ data && data.length && data[0].title}</span>
+                    <span className="date">
+                      {data && data.length && data[0].title}
+                    </span>
                     <span className="mx-1"> </span>
-                    <span>{ data && data.length && moment(data[0].createdAt).format("MMM Do YY")}</span>
+                    <span>
+                      {data &&
+                        data.length &&
+                        moment(data[0].createdAt).format("MMM Do YY")}
+                    </span>
                   </div>
                   {data &&
                     data.map(({ _id, title, description }) => (
                       <div key={_id}>
-                        <h1 className="mb-5">
-                          {title}
-                        </h1>
-                        <h2>
-                          {description}
-                        </h2>
+                        <h1 className="mb-5">{title}</h1>
+                        <h2>{description}</h2>
                       </div>
                     ))}
                 </div>
-                  <Template metaDescription={metaDescription} />
+                <Template metaDescription={metaDescription} />
 
                 {/* Quiz form */}
 
@@ -129,9 +137,11 @@ const Blog = () => {
                 </button>
                 {/* Quiz form ends here */}
               </div>
- 
+
               <div className="col-md-3">
-              <button className="buy-button" onClick={buyNow} >Buy Now</button>
+                <button className="buy-button" onClick={buyNow}>
+                  Buy Now
+                </button>
                 <div className="aside-block">
                   <ul
                     className="nav nav-pills custom-tab-nav mb-4"
@@ -161,23 +171,29 @@ const Blog = () => {
                       role="tabpanel"
                       aria-labelledby="pills-popular-tab"
                     >
-                      {popularBlogs && popularBlogs.length &&
-                      popularBlogs.map(({ _id, title, description, createdAt }) => (
-                        <div>
-                          <div className="post-entry-1 border-bottom" key={_id}>
-                          <div className="post-meta">
-                            <span className="date"> {title}</span>{" "}
-                            <span className="mx-1"></span>{" "}
-                            <span>{moment(createdAt).format("MMM Do YY")}</span>
-                          </div>
-                          <h2 className="mb-2">
-                            <a href="#">
-                            {description}
-                            </a>
-                          </h2>
-                        </div>
-                      </div>
-                    ))}
+                      {popularBlogs &&
+                        popularBlogs.length &&
+                        popularBlogs.map(
+                          ({ _id, title, description, createdAt }) => (
+                            <div>
+                              <div
+                                className="post-entry-1 border-bottom"
+                                key={_id}
+                              >
+                                <div className="post-meta">
+                                  <span className="date"> {title}</span>{" "}
+                                  <span className="mx-1"></span>{" "}
+                                  <span>
+                                    {moment(createdAt).format("MMM Do YY")}
+                                  </span>
+                                </div>
+                                <h2 className="mb-2">
+                                  <a href="#">{description}</a>
+                                </h2>
+                              </div>
+                            </div>
+                          )
+                        )}
                     </div>
                   </div>
                 </div>
@@ -185,10 +201,7 @@ const Blog = () => {
                 <div className="aside-block">
                   <h3 className="aside-title">Video</h3>
                   <div className="video-post">
-                    <a
-                      href="#"
-                      className="glightbox link-video"
-                    >
+                    <a href="#" className="glightbox link-video">
                       <span className="bi-play-fill"></span>
                       <img
                         src="assets/img/post-landscape-5.jpg"
@@ -202,15 +215,16 @@ const Blog = () => {
                 <div className="aside-block">
                   <h3 className="aside-title">Tags</h3>
                   <ul className="aside-tags list-unstyled">
-                  {data && data.length && data[0].tags?.length &&
+                    {data &&
+                      data.length &&
+                      data[0].tags?.length &&
                       data[0].tags.map((tag, index) => (
                         <li key={index}>
                           <a href="">{tag}</a>
                         </li>
-                    ))}
+                      ))}
                   </ul>
                 </div>
-
               </div>
             </div>
           </div>

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 
 const Questions = () => {
   const [questions, setQuestions] = useState([]);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/blog/peace")
+    fetch("http://localhost:5001/api/blog/peace")
       .then((res) => res.json())
       .then((data) => {
         setQuestions(data.quiz_questions);
