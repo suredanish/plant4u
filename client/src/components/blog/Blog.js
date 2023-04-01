@@ -15,10 +15,8 @@ const Blog = () => {
   const [popularBlogs, setpopularBlogs] = useState([]);
   const [metaDescription, setMetaDescription] = useState("");
   const [color, setColor] = useState("#ffffff");
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [quizData, setQuizData] = useState([]);
 
   const override = {
     display: "block",
