@@ -115,7 +115,13 @@ const Blog = () => {
                   {data &&
                     data.map(({ _id, title, description }) => (
                       <div key={_id}>
-                        <h1 className="mb-5">{title}</h1>
+                        <div className="mb-5 d-flex">
+                          <h1 className="">{title} </h1>
+                          <button className="buy-button2" onClick={buyNow}>
+                            Buy Now
+                          </button>
+                        </div>
+
                         <h2>{description}</h2>
                       </div>
                     ))}
