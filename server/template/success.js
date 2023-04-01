@@ -4,8 +4,8 @@ const successTemplate = (body) => {
 
     let currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + 5);
+    const estimatedDeliveryDate = currentDate.toDateString();
 
-    const estimatedDeliveryDate = currentDate
     const itemTotal = body.itemTotal;
     const itemShippingCharge = body.itemShippingCharge;
     const totalItem = Number(itemTotal) + Number(itemShippingCharge);

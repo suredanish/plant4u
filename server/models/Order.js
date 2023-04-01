@@ -47,6 +47,9 @@ const oredrSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
+    },
+    orderId: {
+        type: Number
     }
 
 });
