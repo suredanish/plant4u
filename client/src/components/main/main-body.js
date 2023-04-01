@@ -217,7 +217,7 @@ const MainBody = () => {
             <div className="col-md-9">
               <div className="d-lg-flex post-entry-2">
                 <a
-                  href="single-post.html"
+                  href=""
                   className="me-4 thumbnail mb-4 mb-lg-0 d-inline-block"
                 >
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/FLb4FHJAWhI?autoplay=1" title="Beginner" frameBorder="0"></iframe>
@@ -229,7 +229,7 @@ const MainBody = () => {
                     <span>Match 1th '23</span>
                   </div>
                   <h3>
-                    <a href="single-post.html">
+                    <a href="">
                       Gardening tips for beginners - expert advice to inspire all budding gardeners
                     </a>
                   </h3>
@@ -256,7 +256,7 @@ const MainBody = () => {
               <div className="row">
                 <div className="col-lg-4">
                   <div className="post-entry-1 border-bottom">
-                    <a href="single-post.html">
+                    <a href="">
                       <img
                         src="./img/best-balcony-flowers.jpg"
                         alt=""
@@ -268,7 +268,7 @@ const MainBody = () => {
                       <span>March 5th '23</span>
                     </div>
                     <h2 className="mb-2">
-                      <a href="single-post.html">
+                      <a href="">
                         How to Beautify Your Balcony With Plants by plant4u
                       </a>
                     </h2>
@@ -359,7 +359,7 @@ const MainBody = () => {
                   <span>4 march 2023</span>
                 </div>
                 <h2 className="mb-2">
-                  <a href="single-post.html">
+                  <a href="">
                       10 unique Design for balcony by plant4u
                   </a>
                 </h2>
@@ -383,7 +383,7 @@ const MainBody = () => {
                   <span>6 march 2023</span>
                 </div>
                 <h2 className="mb-2">
-                  <a href="single-post.html">
+                  <a href="">
                     5 terrace garden design by plant4u
                   </a>
                 </h2>
