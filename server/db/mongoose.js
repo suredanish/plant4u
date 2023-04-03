@@ -14,7 +14,7 @@ const connect = () => {
             }
 
             if (process.env.NODE_ENV !== 'test') {
-                logger.info('[LOG=DB] Successfully connected to MongoDB');
+                logger.info('[LOG=DB] Successfully connected to MongoDB');;
             }
         }
     );
