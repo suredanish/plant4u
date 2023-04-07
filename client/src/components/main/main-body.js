@@ -93,7 +93,7 @@ const MainBody = () => {
                     </p>
                     <Link to={`/blog/${popularBlogs[0].meta_description}`}>
                       <img
-                        src="./img/peaceLilly/peace-lilly-2.jpeg"
+                        src={`./img/${popularBlogs[0].meta_description}/${popularBlogs[0].front_image}`}
                         alt=""
                         className="img-fluid"
                       />
