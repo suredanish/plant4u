@@ -3,12 +3,10 @@ import GoldenPothos from "./goldenPothos";
 import MajesticPalm from "./majesticPalm";
 import StringPearl from "./stringPearl";
 import HeartLeafPhilodendron from "./heartLeafPhilodendron";
+import FicsuBonsai from "./ficusBonsai";
 
 const template = (data) => {
     if(data.metaDescription === 'peaceLilly') {
-        return <PeaceLilly />
-    }
-    else if(data.metaDescription === 'peaceLilly1') {
         return <PeaceLilly />
     }
     else if(data.metaDescription === 'goldenPothos') {
@@ -23,9 +21,9 @@ const template = (data) => {
     else if(data.metaDescription === 'heartLeafPhilodendron')  {
         return <HeartLeafPhilodendron />
     }
-    // else if(data.metaDescription === 'success')  {
-    //     return <Success />
-    // }
+    else if(data.metaDescription === "ficusBonsai") {
+        return <FicsuBonsai />
+    }
     return;
 };
   
