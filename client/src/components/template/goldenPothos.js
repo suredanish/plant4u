@@ -86,10 +86,7 @@ const goldenPothos = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Explicabo, odit?{" "}
-      </figcaption>
+
     </div>
     <p>
         Golden Pothos is generally a low-maintenance plant and is not prone to many pests or diseases. However, it can be susceptible to mealybugs, spider mites, and scale insects. Here are a few tips for preventing and treating these issues:

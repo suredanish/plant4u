@@ -51,7 +51,7 @@ const ContactInfo = ({ isActive, onCloseActive, onOpenActive }) => {
           </div>
 
           <div className="">
-            <Label className="text-sm">Your phone number</Label>
+            <Label className="text-sm">Your contact number</Label>
             <Input
               onChange={(e) => {
                 setPhone(e.target.value);

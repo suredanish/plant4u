@@ -17,6 +17,7 @@ const Blog = () => {
   const [color, setColor] = useState("#ffffff");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const[isAvailableToBuy, setIsAvailableToBuy] = useState(false)
 
   const override = {
     display: "block",
@@ -30,6 +31,12 @@ const Blog = () => {
       fetch(`/api/blog/params/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
+          console.log(actualData[0].price, 'actual data price value is here')
+          if(actualData && actualData?.length >0 ) {
+            if(actualData[0].price && actualData[0].price > 0) {
+              setIsAvailableToBuy(true)
+            }
+          }
           setData(actualData);
           setError(null);
         })
@@ -115,9 +122,7 @@ const Blog = () => {
                       <div key={_id}>
                         <div className="mb-5 d-flex">
                           <h1 className="">{title} </h1>
-                          <button className="buy-button2" onClick={buyNow}>
-                            Buy Now
-                          </button>
+                          { isAvailableToBuy ? <button className="buy-button2" onClick={buyNow}>Buy Now`</button>: '' }
                         </div>
 
                         <h2>{description}</h2>
@@ -125,27 +130,27 @@ const Blog = () => {
                     ))}
                 </div>
                 <Template metaDescription={metaDescription} />
+                {isAvailableToBuy ?
+                <div>
+                  <h2>
+                    Want to earn a free plant? Click below
+                    <img
+                      style={{ width: "2rem" }}
+                      src="https://em-content.zobj.net/source/microsoft-teams/337/backhand-index-pointing-down_1f447.png"
+                      alt="emoji"
+                    />
+                  </h2>
+                  <button className="show-modal" onClick={openModal}>
+                    Let's play a quiz
+                  </button>
+                </div> : ''}
 
-                {/* Quiz form */}
-
-                <h2>
-                  Want to earn a free plant? Click below
-                  <img
-                    style={{ width: "2rem" }}
-                    src="https://em-content.zobj.net/source/microsoft-teams/337/backhand-index-pointing-down_1f447.png"
-                    alt="emoji"
-                  />
-                </h2>
-                <button className="show-modal" onClick={openModal}>
-                  Let's play a quiz
-                </button>
                 {/* Quiz form ends here */}
               </div>
 
               <div className="col-md-3">
-                <button className="buy-button" onClick={buyNow}>
-                  Buy Now
-                </button>
+                {isAvailableToBuy ? <button className="buy-button" onClick={buyNow}>Buy Now </button> : '' }
+   
                 <div className="aside-block">
                   <ul
                     className="nav nav-pills custom-tab-nav mb-4"

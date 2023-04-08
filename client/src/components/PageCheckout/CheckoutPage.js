@@ -117,25 +117,27 @@ const CheckoutPage = () => {
   }, [shippingDetails]);
 
   React.useEffect(() => {
-    if (location.state.status && location.state.hasInventory) {
-      startAnimation();
-      toast.success("successful", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 15000,
-      });
-      setTimeout(() => {
-        stopAnimation();
-      }, 10000);
-    } else if (location.state.status && !location.state.hasInventory) {
-      toast.info(
-        "We have reached our limit for Free plant but you can buy this plant.",
-        { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
-      );
-    } else if (!location.state.status) {
-      toast.info(
-        "We have reached our limit for Free plant but you can buy this plant.",
-        { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
-      );
+    if( location.state.isQuiz) {
+      if (location.state.status && location.state.hasInventory) {
+        startAnimation();
+        toast.success("successful", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 15000,
+        });
+        setTimeout(() => {
+          stopAnimation();
+        }, 1000);
+      } else if (location.state.status && !location.state.hasInventory) {
+        toast.info(
+          "We have reached our limit for Free plant but you can buy this plant.",
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+        );
+      } else if (!location.state.status) {
+        toast.info(
+          "We have reached our limit for Free plant but you can buy this plant.",
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+        );
+      }
     }
   }, []);
 
@@ -298,7 +300,32 @@ const CheckoutPage = () => {
     Object.keys(body).every((res) => {
       if (body[res] == undefined || body[res] == "" || body[res] == null) {
         isError = true;
-        toast.error(`${res} can not be empty!`, {
+        let msg = ``
+        if(res == 'email') {
+          msg+= `Invalid email address. Please enter valid email and save the address.`
+        } 
+        else if( res == 'contact') {
+          msg+= `Invalid contact number. Please enter valid contact and save the address.`
+        }
+        else if(res == 'firstName') {
+          msg+= `Invalid first name. Please enter valid first name and save the address.`
+        }
+        else if(res == 'lastName') {
+          msg+= `Invalid last name. Please enter valid last name and save the address.`
+        }
+        else if(res == 'address') {
+          msg+= `Invalid address. Please enter valid address and save the address.`
+        }
+        else if(res == 'city') {
+          msg+= `Invalid address. Please enter valid address and save the address.`
+        }
+        else if(res == 'state') {
+          msg+= `Invalid state. Please enter valid state and save the address.`
+        }
+        else if( res == 'pincode') {
+          msg+= `Invalid pincode. Please enter valid pincode and save the address.`
+        }
+        toast.error(msg, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
         });

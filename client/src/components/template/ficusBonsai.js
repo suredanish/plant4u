@@ -38,10 +38,7 @@ const ficsuBonsai = () => {
         alt=""
         className="img-fluid"
       />
-      {/* <figcaption>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Explicabo, odit?{" "}
-      </figcaption> */}
+
     </div>
   
     <p>
@@ -87,12 +84,8 @@ const ficsuBonsai = () => {
         alt=""
         className="img-fluid"
       />
-      <figcaption>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Explicabo, odit?{" "}
-      </figcaption>
     </div>
-
+      <br></br>
     <h2>Final Thoughts</h2>
     <p>Ficus bonsai is a beautiful and easy-to-care-for plant that can add a touch of natural beauty to any indoor space. With the right pot, soil, and care, you can enjoy the beauty of this plant for many years to come..</p>
     <div>
