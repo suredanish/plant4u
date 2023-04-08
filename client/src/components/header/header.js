@@ -21,14 +21,12 @@ const Header = () => {
             {/* <!-- .navbar --> */}
 
             <div className="position-relative">
-            {/* <a href="#" className="mx-2"><span className="bi-facebook"></span></a>
-            <a href="#" className="mx-2"><span className="bi-twitter"></span></a> */}
+
             <a href="https://www.instagram.com/plant4u_/?hl=en" className="mx-2"><span className="bi-instagram"></span></a>
 
-            <a href="#" className="mx-2 js-search-open"><span className="bi-search"></span></a>
+            <a  className="mx-2 js-search-open"><span className="bi-search"></span></a>
             <i className="bi bi-list mobile-nav-toggle"></i>
 
-            {/* <!-- ======= Search Form ======= --> */}
             <div className="search-form-wrap js-search-form-wrap">
                 <form action="search-result.html" className="search-form">
                 <span className="icon bi-search"></span>

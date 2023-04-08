@@ -122,7 +122,7 @@ const Blog = () => {
                       <div key={_id}>
                         <div className="mb-5 d-flex">
                           <h1 className="">{title} </h1>
-                          { isAvailableToBuy ? <button className="buy-button2" onClick={buyNow}>Buy Now`</button>: '' }
+                          { isAvailableToBuy ? <button className="buy-button2" onClick={buyNow}>Buy Now</button>: '' }
                         </div>
 
                         <h2>{description}</h2>

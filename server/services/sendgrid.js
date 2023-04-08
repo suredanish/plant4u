@@ -5,7 +5,7 @@ const sendEmail = (to, body) => {
     try {
         const message = {
             from: {
-                email: 'xxstyagixx@gmail.com',
+                email: 'info@plant4u.in',
                 name: 'plant4u'
             },
             to: {
