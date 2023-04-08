@@ -32,6 +32,7 @@ try {
               pincode: req.body.pincode,
               productId: req.body.productId,
               amount: (req.body.amount/ 100),
+              blogId: req.body.productId,
               city: req.body.city,
               payment_status: 0,
               status: 1,

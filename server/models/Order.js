@@ -48,6 +48,9 @@ const oredrSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    blogId: {
+        type: String
+    },
     orderId: {
         type: Number
     }
