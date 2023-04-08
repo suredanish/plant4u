@@ -13,15 +13,65 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
   const [state, setState] = useState(null);
   const [postCode, setPostCode] = useState(null);
 
-  const structureShipppingData = () => {
-    return {
-      firstname: firstName,
-      lastname: lastName,
-      address: address,
-      state: state,
-      pinCode: postCode,
-      city: city,
-    };
+  const fetchPinData = async (pinCode, setValue) => {
+    console.log("called ", pinCode);
+    const res = await fetch(`https://api.postalpincode.in/pincode/${pinCode}`);
+    const data = await res.json();
+    console.log("data ", data);
+    if (data[0].Status === "Success" && setValue) {
+      setCity(data[0].PostOffice[0].District);
+      setState(data[0].PostOffice[0].State);
+    }
+    let returnValue = false;
+    if (data[0].Status === "Success") {
+      // check if pincode is from delhi, gurugram, ghaziabad or noida
+      if (
+        data[0].PostOffice[0].State === "Delhi" ||
+        data[0].PostOffice[0].District === "Gurgaon" ||
+        data[0].PostOffice[0].District === "Ghaziabad" ||
+        data[0].PostOffice[0].Block === "Noida"
+      ) {
+        returnValue = true;
+      }
+    }
+    return returnValue;
+  };
+
+  const fetchPinData2 = (pinCode, setValue) => {
+    fetch(`https://api.postalpincode.in/pincode/${pinCode}`).then(
+      async (res) => {
+        const data = await res.json();
+        if (data[0].Status === "Success" && setValue) {
+          setCity(data[0].PostOffice[0].District);
+          setState(data[0].PostOffice[0].State);
+        }
+      }
+    );
+  };
+
+  const structureShipppingData = async () => {
+    if (!postCode || !city || !firstName || !lastName || !address || !state) {
+      onCloseActive({
+        error: "Please fill all the fields",
+      });
+    } else {
+      let isValid = await fetchPinData(postCode, false);
+      console.log("is valid ", isValid);
+      if (isValid) {
+        onCloseActive({
+          firstname: firstName,
+          lastname: lastName,
+          address: address,
+          state: state,
+          pinCode: postCode,
+          city: city,
+        });
+      } else {
+        onCloseActive({
+          error: "Currently we are not delivering to your area.",
+        });
+      }
+    }
   };
 
   const renderShippingAddress = () => {
@@ -61,6 +111,7 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
                 onChange={(e) => {
                   setFirstName(e.target.value);
                 }}
+                value={firstName}
                 className="mt-1.5"
                 defaultValue=""
                 required
@@ -72,6 +123,7 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
                 onChange={(e) => {
                   setLastName(e.target.value);
                 }}
+                value={lastName}
                 className="mt-1.5"
                 defaultValue=""
               />
@@ -86,6 +138,7 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
                 onChange={(e) => {
                   setAddress(e.target.value);
                 }}
+                value={address}
                 className="mt-1.5"
                 placeholder=""
                 defaultValue={""}
@@ -98,11 +151,27 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
           {/* ============ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
             <div>
+              <Label className="text-sm">Postal code</Label>
+              <Input
+                onChange={(e) => {
+                  setPostCode(e.target.value);
+                  if (e.target.value.length === 6) {
+                    fetchPinData2(parseInt(e.target.value), true);
+                  }
+                }}
+                value={postCode}
+                className="mt-1.5"
+                defaultValue=""
+                required
+              />
+            </div>
+            <div>
               <Label className="text-sm">City</Label>
               <Input
                 onChange={(e) => {
                   setCity(e.target.value);
                 }}
+                value={city}
                 className="mt-1.5"
                 defaultValue=""
                 required
@@ -114,17 +183,7 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
                 onChange={(e) => {
                   setState(e.target.value);
                 }}
-                className="mt-1.5"
-                defaultValue=""
-                required
-              />
-            </div>
-            <div>
-              <Label className="text-sm">Postal code</Label>
-              <Input
-                onChange={(e) => {
-                  setPostCode(e.target.value);
-                }}
+                value={state}
                 className="mt-1.5"
                 defaultValue=""
                 required
@@ -136,7 +195,7 @@ const ShippingAddress = ({ isActive, onCloseActive, onOpenActive }) => {
           <div className="flex flex-col sm:flex-row pt-6">
             <ButtonPrimary
               className="sm:!px-7 shadow-none"
-              onClick={() => onCloseActive(structureShipppingData())}
+              onClick={() => structureShipppingData()}
             >
               Save and next to Payment
             </ButtonPrimary>

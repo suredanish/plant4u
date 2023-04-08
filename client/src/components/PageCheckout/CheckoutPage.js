@@ -267,13 +267,25 @@ const CheckoutPage = () => {
             }}
             onCloseActive={(shippingDetails) => {
               console.log(shippingDetails, "shippingDetails is hereee");
-              setShippingDetails(shippingDetails);
-              setTabActive("");
-              handleScrollToEl("ContactInfo");
-              toast.success("successfully saved shipping address", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 2500,
-              });
+              if (shippingDetails && !shippingDetails.error) {
+                setShippingDetails(shippingDetails);
+                setTabActive("");
+                handleScrollToEl("ContactInfo");
+                toast.success("successfully saved shipping address", {
+                  position: toast.POSITION.TOP_RIGHT,
+                  autoClose: 2500,
+                });
+              } else {
+                toast.error(
+                  shippingDetails && shippingDetails.error
+                    ? shippingDetails.error
+                    : "Please fill all the fields",
+                  {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 2500,
+                  }
+                );
+              }
             }}
           />
         </div>
