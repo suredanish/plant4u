@@ -10,7 +10,7 @@ import ShippingAddress from "./ShippingAddress.js";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ReactCanvasConfetti from "react-canvas-confetti";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 
@@ -49,12 +49,11 @@ const CheckoutPage = () => {
   const [product, setProduct] = useState(null);
   const refAnimationInstance = React.useRef(null);
   const [intervalId, setIntervalId] = useState();
-  const [localStorageData, setLocalStorage] = useState(null);
   const [color, setColor] = useState("#ffffff");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("location state value is here", location.state);
+
   const override = {
     display: "block",
     margin: "200 auto",
@@ -92,6 +91,17 @@ const CheckoutPage = () => {
     }
   };
 
+  const makeid = (length) => {
+    var result = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+    charactersLength));
+    }
+    return result;
+    }
+    
   React.useEffect(() => {
     return () => {
       clearInterval(intervalId);
@@ -117,25 +127,27 @@ const CheckoutPage = () => {
   }, [shippingDetails]);
 
   React.useEffect(() => {
+
     if( location.state.isQuiz) {
       if (location.state.status && location.state.hasInventory) {
         startAnimation();
-        toast.success("successful", {
+        toast.success("Congrats! Your free plant is just some steps away.",{
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 15000,
+          // toastId: makeid()
         });
         setTimeout(() => {
           stopAnimation();
         }, 1000);
       } else if (location.state.status && !location.state.hasInventory) {
         toast.info(
-          "We have reached our limit for Free plant but you can buy this plant.",
-          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+          "We have reached our limit for free plant.",
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000}
         );
       } else if (!location.state.status) {
         toast.info(
-          "We have reached our limit for Free plant but you can buy this plant.",
-          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+          "Oh! looks like you have not answered all question correctly.",
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000}
         );
       }
     }
@@ -352,7 +364,6 @@ const CheckoutPage = () => {
   return (
     <div className="nc-CheckoutPage">
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-      <ToastContainer />
       <main className="container py-16 lg:pb-28 lg:pt-20 ">
         <div className="mb-16 mt-4">
           <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">

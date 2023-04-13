@@ -98,18 +98,6 @@ const MainBody = () => {
                         className="img-fluid"
                       />
                     </Link>
-                    <div className="d-flex align-items-center author">
-                      <div className="photo">
-                        <img
-                          src="./img/peaceLilly/peace-lilly-1.jpeg"
-                          alt=""
-                          className="img-fluid"
-                        />
-                      </div>
-                      <div className="name">
-                        <h3 className="m-0 p-0">plant4u</h3>
-                      </div>
-                    </div>
                   </>
                 ) : ''}
               </div>
@@ -404,6 +392,7 @@ const MainBody = () => {
             </div>
           </div>
         </div>
+      
       </section>
     </main>
   );

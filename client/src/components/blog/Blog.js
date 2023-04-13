@@ -31,7 +31,6 @@ const Blog = () => {
       fetch(`/api/blog/params/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
-          console.log(actualData[0].price, 'actual data price value is here')
           if(actualData && actualData?.length >0 ) {
             if(actualData[0].price && actualData[0].price > 0) {
               setIsAvailableToBuy(true)

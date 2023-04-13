@@ -61,23 +61,6 @@ const Quiz = ({ quizData }) => {
 
       setResponse(res);
 
-      if (res.data.status && res.data?.canShowAddress) {
-
-        startAnimation()
-        setShowResult(true);
-        toast.success('successful', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-        setTimeout(() => {
-          stopAnimation()
-        }, 10000)
-  
-      } else if (res.data.status && !res.data?.canShowAddress) {
-        setShowResult(true);
-        toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-
-      } else {
-        setShowResult(true);
-        toast.info('We have reached our limit for Free plant but you can buy this plant.', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-      }
       setActiveQuestion(0);
     }
   };

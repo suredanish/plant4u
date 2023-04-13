@@ -7,10 +7,12 @@ import Contact from "./components/home/contact";
 import Success from "./components/success/success"
 import CheckoutPage from "./components/PageCheckout/CheckoutPage"
 import Payment from "./components/payment/payment";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <Header />
       <Routes>
         <Route path="/" element={<MainBody />} />
