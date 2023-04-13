@@ -17,7 +17,7 @@ const Blog = () => {
   const [color, setColor] = useState("#ffffff");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const[isAvailableToBuy, setIsAvailableToBuy] = useState(false)
+  const [isAvailableToBuy, setIsAvailableToBuy] = useState(false);
 
   const override = {
     display: "block",
@@ -31,9 +31,9 @@ const Blog = () => {
       fetch(`/api/blog/params/${query.params}`)
         .then((res) => res.json())
         .then((actualData) => {
-          if(actualData && actualData?.length >0 ) {
-            if(actualData[0].price && actualData[0].price > 0) {
-              setIsAvailableToBuy(true)
+          if (actualData && actualData?.length > 0) {
+            if (actualData[0].price && actualData[0].price > 0) {
+              setIsAvailableToBuy(true);
             }
           }
           setData(actualData);
@@ -121,7 +121,13 @@ const Blog = () => {
                       <div key={_id}>
                         <div className="mb-5 d-flex">
                           <h1 className="">{title} </h1>
-                          { isAvailableToBuy ? <button className="buy-button2" onClick={buyNow}>Buy Now</button>: '' }
+                          {isAvailableToBuy ? (
+                            <button className="buy-button2" onClick={buyNow}>
+                              Buy Now
+                            </button>
+                          ) : (
+                            ""
+                          )}
                         </div>
 
                         <h2>{description}</h2>
@@ -129,27 +135,36 @@ const Blog = () => {
                     ))}
                 </div>
                 <Template metaDescription={metaDescription} />
-                {isAvailableToBuy ?
-                <div>
-                  <h2>
-                    Want to earn a free plant? Click below
-                    <img
-                      style={{ width: "2rem" }}
-                      src="https://em-content.zobj.net/source/microsoft-teams/337/backhand-index-pointing-down_1f447.png"
-                      alt="emoji"
-                    />
-                  </h2>
-                  <button className="show-modal" onClick={openModal}>
-                    Let's play a quiz
-                  </button>
-                </div> : ''}
+                {isAvailableToBuy ? (
+                  <div>
+                    <h2>
+                      Want to earn a free plant? Click below
+                      <img
+                        style={{ width: "2rem" }}
+                        src="https://em-content.zobj.net/source/microsoft-teams/337/backhand-index-pointing-down_1f447.png"
+                        alt="emoji"
+                      />
+                    </h2>
+                    <button className="show-modal" onClick={openModal}>
+                      Let's play a quiz
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
 
                 {/* Quiz form ends here */}
               </div>
 
               <div className="col-md-3">
-                {isAvailableToBuy ? <button className="buy-button" onClick={buyNow}>Buy Now </button> : '' }
-   
+                {isAvailableToBuy ? (
+                  <button className="buy-button" onClick={buyNow}>
+                    Buy Now{" "}
+                  </button>
+                ) : (
+                  ""
+                )}
+
                 <div className="aside-block">
                   <ul
                     className="nav nav-pills custom-tab-nav mb-4"
@@ -233,6 +248,24 @@ const Blog = () => {
                       ))}
                   </ul>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="footer-blog">
+            <div className="d-flex justify-content-between">
+              <div className="w-50 border-right">
+                <button className="footer-button-class" onClick={buyNow}>
+                  Buy Now{" "}
+                </button>
+              </div>
+
+              <div className="w-50">
+                {" "}
+                <button className="footer-button-class" onClick={openModal}>
+                  Get Free
+                </button>
               </div>
             </div>
           </div>
