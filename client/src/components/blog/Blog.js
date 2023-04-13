@@ -6,6 +6,8 @@ import Template from "../template";
 import Quiz from "../quiz/Quiz";
 import "./Blog.css";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { RiPlantLine } from "react-icons/ri";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -256,15 +258,24 @@ const Blog = () => {
           <div className="footer-blog">
             <div className="d-flex justify-content-between">
               <div className="w-50 border-right">
-                <button className="footer-button-class" onClick={buyNow}>
-                  Buy Now{" "}
+                <button className="footer-button-class d-flex" onClick={buyNow}>
+                  <div>
+                    <AiOutlineShoppingCart size={25} />
+                  </div>
+                  <div className="ml-2">Buy Now</div>{" "}
                 </button>
               </div>
 
               <div className="w-50">
                 {" "}
-                <button className="footer-button-class" onClick={openModal}>
-                  Get Free
+                <button
+                  className="footer-button-class d-flex"
+                  onClick={openModal}
+                >
+                  <div>
+                    <RiPlantLine size={25} />
+                  </div>
+                  <div className="ml-2">Get Free</div>{" "}
                 </button>
               </div>
             </div>
