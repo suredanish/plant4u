@@ -8,22 +8,30 @@ import Success from "./components/success/success"
 import CheckoutPage from "./components/PageCheckout/CheckoutPage"
 import Payment from "./components/payment/payment";
 import { ToastContainer } from "react-toastify";
+import PrivacyPolicy from "./components/home/privacyPolicy";
+import TermsAndCondition from "./components/home/termsAndCondition";
+import ReturnAndRefundPolicy from "./components/home/returnAndRefundPolicy";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
     <div className="App">
       <ToastContainer />
       <Header />
-      <Routes>
-        <Route path="/" element={<MainBody />} />
-        <Route path="/blog/:params" element={<Blog />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element ={<Contact />} />
-        <Route path="/address/success" element ={<Success />} />
-        <Route path="/checkout" element ={<CheckoutPage />} />
-        <Route path="/payment" element ={<Payment />} />
-        <Route path="/success" element ={<Success />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<MainBody />} />
+          <Route path="/blog/:params" element={<Blog />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element ={<Contact />} />
+          <Route path="/address/success" element ={<Success />} />
+          <Route path="/checkout" element ={<CheckoutPage />} />
+          <Route path="/payment" element ={<Payment />} />
+          <Route path="/success" element ={<Success />} />
+          <Route path="/privacy-policy" element ={<PrivacyPolicy />} />
+          <Route path="/refund" element ={<TermsAndCondition />} />
+          <Route path="/terms-condition" element ={<ReturnAndRefundPolicy />} />
+        </Routes>
+      <Footer/>
     </div>
   );
 }
