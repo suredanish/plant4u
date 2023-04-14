@@ -28,8 +28,8 @@ function App() {
           <Route path="/payment" element ={<Payment />} />
           <Route path="/success" element ={<Success />} />
           <Route path="/privacy-policy" element ={<PrivacyPolicy />} />
-          <Route path="/refund" element ={<TermsAndCondition />} />
-          <Route path="/terms-condition" element ={<ReturnAndRefundPolicy />} />
+          <Route path="/refund" element ={<ReturnAndRefundPolicy />} />
+          <Route path="/terms-condition" element ={<TermsAndCondition />} />
         </Routes>
       <Footer/>
     </div>
