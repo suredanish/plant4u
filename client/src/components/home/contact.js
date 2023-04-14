@@ -44,6 +44,7 @@ const Contact = () => {
                     <i class="bi bi-envelope"></i>
                     <h3>Email</h3>
                     <p><a href="mailto:info@example.com">info@plant4u.in</a></p>
+                    <p>Our Office: HN: 432, Sita saran road jamuna vihar khatauli, UP (251201)</p>
                     </div>
                 </div>
 

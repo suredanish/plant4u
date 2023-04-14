@@ -14,7 +14,11 @@ const privacyPolicy = () => {
                 <h2>Consent</h2>
                 
                 <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
-                
+                <h2>Shipping, what is the delivery time?</h2>
+                <p>
+                    Normally our delivery takes between 2-5 working days. An estimated delivery date will be provided to you at checkout.
+                </p>
+
                 <h2>Information we collect</h2>
                 
                 <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
