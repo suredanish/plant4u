@@ -60,7 +60,7 @@ const Quiz = ({ quizData }) => {
       });
 
       setResponse(res);
-
+      setShowResult(true);
       setActiveQuestion(0);
     }
   };
