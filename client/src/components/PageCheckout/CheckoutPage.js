@@ -53,6 +53,7 @@ const CheckoutPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const [giveaway, setGiveaway] = useState(null);
 
   const override = {
     display: "block",
@@ -86,22 +87,18 @@ const CheckoutPage = () => {
   const getBlogData = async () => {
     const productData = await axios.get(`api/blog/${location.state.id}`);
     if (productData && productData.data && productData.data.length) {
+      // console.log(productData.data[0].meta?.giveaway, 'all give away value is hereeeeee')
+      if(productData.data[0].meta?.giveaway) {
+        setGiveaway(true)
+      } else {
+        setGiveaway(false);
+      }
+    
       setProduct(productData.data);
       setLoading(false);
     }
   };
 
-  const makeid = (length) => {
-    var result = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-    result += characters.charAt(Math.floor(Math.random() * 
-    charactersLength));
-    }
-    return result;
-    }
-    
   React.useEffect(() => {
     return () => {
       clearInterval(intervalId);
@@ -195,6 +192,38 @@ const CheckoutPage = () => {
       console.log(error);
     }
   };
+
+  const confirmGiveAway =() => {
+    try {
+      const body = {
+        email: email,
+        contact: contact,
+        firstName: shippingDetails?.firstname,
+        lastName: shippingDetails?.lastname,
+        address: shippingDetails?.address,
+        city: shippingDetails?.city,
+        state: shippingDetails?.state,
+        pincode: shippingDetails?.pinCode,
+      };
+      const hasError = validateAddressBody(body);
+
+      if (!hasError) {
+
+        let paymentAmount = Number(product[0].price) + Number(location.state.shippingCharge);
+        localStorage.removeItem("productData");
+        console.log(paymentAmount, 'payment amount value ishereee')
+        navigate("/success");
+        // if (paymentAmount == 0) {
+        //   //need to refresh or moved to some other success component
+        //   navigate("/");
+        // } else {
+        //   navigate("/success");
+        // }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const saveAddress = async () => {
     const body = {
@@ -382,7 +411,8 @@ const CheckoutPage = () => {
               {product.map(renderProduct)}
             </div>
 
-            <div className="mt-10 pt-6 text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200/70 dark:border-slate-700 ">
+            {/* Here we add the logic to delete those account*/}
+            { !giveaway ? ( <div className="mt-10 pt-6 text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200/70 dark:border-slate-700 ">
               <div>
                 <Label className="text-sm">Discount code</Label>
                 <div className="flex mt-1.5">
@@ -426,15 +456,24 @@ const CheckoutPage = () => {
                     (location.state.price == 0 ? 0 : Number(product[0].price))}
                 </span>
               </div>
-            </div>
-            <ButtonPrimary
+            </div>) : '' }
+           
+           {!giveaway ?  
+              <ButtonPrimary
+                onClick={() => {
+                  ConfirmOrder();
+                }}
+                className="mt-8 w-full"
+              >
+                Confirm order
+              </ButtonPrimary> : <ButtonPrimary
               onClick={() => {
-                ConfirmOrder();
+                confirmGiveAway();
               }}
               className="mt-8 w-full"
             >
-              Confirm order
-            </ButtonPrimary>
+              Grab this Plant
+            </ButtonPrimary>}
           </div>
         </div>
       </main>

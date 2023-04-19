@@ -29,34 +29,34 @@ const Success = () => {
     borderColor: "grey",
   };
 
-  React.useEffect(() => {
-    if (!productId) {
-      navigate("/");
-      window.location.reload();
-    }
-  });
+  // React.useEffect(() => {
+  //   if (!productId) {
+  //     navigate("/");
+  //     window.location.reload();
+  //   }
+  // });
 
-  React.useEffect(async () => {
-    const productData = await axios.get(`/api/blog/${productId}`);
-    if (productData && productData.data && productData.data.length) {
-      setProductDetails(productData.data[0]);
-    }
-    setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // React.useEffect(async () => {
+  //   const productData = await axios.get(`/api/blog/${productId}`);
+  //   if (productData && productData.data && productData.data.length) {
+  //     setProductDetails(productData.data[0]);
+  //   }
+  //   setLoading(false);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  if (!productDetails) {
-    return (
-      <ClipLoader
-        color={color}
-        loading={loading}
-        cssOverride={override}
-        size={100}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
-    );
-  }
+  // if (!productDetails) {
+  //   return (
+  //     <ClipLoader
+  //       color={color}
+  //       loading={loading}
+  //       cssOverride={override}
+  //       size={100}
+  //       aria-label="Loading Spinner"
+  //       data-testid="loader"
+  //     />
+  //   );
+  // }
 
   //   <img
   //   src={`./img/${productDetails?.meta_description}/${productDetails?.front_image}`}
