@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const  Razorpay = require('razorpay');
 const {Order} = require('../models/Order')
+const common = require('../utils/common')
 
 router.post('/', async (req,res) => {
 try {
@@ -50,4 +51,44 @@ try {
  }
 });
 
-  module.exports = router;
+router.post('/giveaway', async ( req, res) => {
+  try {
+
+    const randomNumber = common.generateRandomNumber();
+
+    const orderData = await new Order({
+        name:req.body.name,
+        email:req.body.email,
+        contact: req.body.contact,
+        address: req.body.address,
+        state: req.body.state,
+        pincode: req.body.pincode,
+        productId: req.body.productId,
+        amount: (req.body.amount),
+        blogId: req.body.productId,
+        city: req.body.city,
+        payment_status: 1,
+        status: 1,
+        razorpay_order_id: null,
+        transaction_id: null,
+        giveaway_id: randomNumber
+    });
+
+    orderData.save(function(err,result){
+      if (err){
+          console.log(err);
+      }
+      else{
+          console.log(result)
+      }
+  })
+
+    return res.json({ status: true, randomNumber})
+  }
+  catch ( error) {
+    console.log(error, "error is heree")
+    return res.status(401).send({status: false, message:'Error while saving Order'})
+  }
+})
+
+module.exports = router;

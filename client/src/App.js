@@ -5,6 +5,7 @@ import Blog from "./components/blog/Blog";
 import About from "./components/home/about";
 import Contact from "./components/home/contact";
 import Success from "./components/success/success"
+import GiveawaySuccess from "./components/success/giveawaySuccess"
 import CheckoutPage from "./components/PageCheckout/CheckoutPage"
 import Payment from "./components/payment/payment";
 import { ToastContainer } from "react-toastify";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/checkout" element ={<CheckoutPage />} />
           <Route path="/payment" element ={<Payment />} />
           <Route path="/success" element ={<Success />} />
+          <Route path="/giveawaySuccess" element ={<GiveawaySuccess />} />
           <Route path="/privacy-policy" element ={<PrivacyPolicy />} />
           <Route path="/refund" element ={<ReturnAndRefundPolicy />} />
           <Route path="/terms-condition" element ={<TermsAndCondition />} />

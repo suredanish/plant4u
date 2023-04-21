@@ -53,6 +53,9 @@ const oredrSchema = new Schema({
     },
     orderId: {
         type: Number
+    },
+    giveaway_id: {
+        type : String
     }
 
 });

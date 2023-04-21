@@ -20,6 +20,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isAvailableToBuy, setIsAvailableToBuy] = useState(false);
+  const [isAvailableToGiveaway, setIsAvailableToGiveAway] = useState(false);
 
   const override = {
     display: "block",
@@ -34,8 +35,12 @@ const Blog = () => {
         .then((res) => res.json())
         .then((actualData) => {
           if (actualData && actualData?.length > 0) {
+            
             if (actualData[0].price && actualData[0].price > 0) {
               setIsAvailableToBuy(true);
+            }
+            if((actualData[0]?.meta?.giveaway == "true")) {
+              setIsAvailableToGiveAway(true)
             }
           }
           setData(actualData);
@@ -123,7 +128,7 @@ const Blog = () => {
                       <div key={_id}>
                         <div className="mb-5 d-flex">
                           <h1 className="">{title} </h1>
-                          {isAvailableToBuy ? (
+                          {isAvailableToBuy  && !isAvailableToGiveaway ? (
                             <button className="buy-button2" onClick={buyNow}>
                               Buy Now
                             </button>
@@ -159,7 +164,7 @@ const Blog = () => {
               </div>
 
               <div className="col-md-3">
-                {isAvailableToBuy ? (
+                {isAvailableToBuy && !isAvailableToGiveaway ? (
                   <button className="buy-button" onClick={buyNow}>
                     Buy Now{" "}
                   </button>
@@ -256,6 +261,7 @@ const Blog = () => {
 
           {/* Footer */}
           <div className="footer-blog">
+            {!isAvailableToGiveaway ? 
             <div className="d-flex justify-content-between">
               <div className="w-50 border-right">
                 <button className="footer-button-class d-flex" onClick={buyNow}>
@@ -263,9 +269,8 @@ const Blog = () => {
                     <AiOutlineShoppingCart size={25} />
                   </div>
                   <div className="ml-2">Buy Now</div>{" "}
-                </button>
+                </button> 
               </div>
-
               <div className="w-50">
                 {" "}
                 <button
@@ -278,7 +283,21 @@ const Blog = () => {
                   <div className="ml-2">Get Free</div>{" "}
                 </button>
               </div>
-            </div>
+            </div>:    
+             <div className="d-flex justify-content-between">
+              <div className="w-100">
+                {" "}
+                <button
+                  className="footer-button-class d-flex"
+                  onClick={openModal}
+                >
+                  <div>
+                    <RiPlantLine size={25} />
+                  </div>
+                  <div className="ml-2">Get Free</div>{" "}
+                </button>
+              </div>
+            </div>}
           </div>
         </section>
       </main>

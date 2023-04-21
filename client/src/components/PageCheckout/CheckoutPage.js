@@ -125,7 +125,7 @@ const CheckoutPage = () => {
 
   React.useEffect(() => {
 
-    if( location.state.isQuiz) {
+    if( location.state.isQuiz && !giveaway) {
       if (location.state.status && location.state.hasInventory) {
         startAnimation();
         toast.success("Congrats! Your free plant is just some steps away.",{
@@ -193,8 +193,9 @@ const CheckoutPage = () => {
     }
   };
 
-  const confirmGiveAway =() => {
+  const confirmGiveAway = async() => {
     try {
+
       const body = {
         email: email,
         contact: contact,
@@ -205,20 +206,30 @@ const CheckoutPage = () => {
         state: shippingDetails?.state,
         pincode: shippingDetails?.pinCode,
       };
-      const hasError = validateAddressBody(body);
 
+      const hasError = validateAddressBody(body);
+    
       if (!hasError) {
 
-        let paymentAmount = Number(product[0].price) + Number(location.state.shippingCharge);
+        const bodyValue = {
+          amount: 0, 
+          name: shippingDetails?.firstname,
+          email: email,
+          contact: contact,
+          address: shippingDetails?.address, 
+          productId: product[0]._id, 
+          state: shippingDetails?.state, 
+          pincode: shippingDetails?.pinCode,
+          city: shippingDetails?.city,
+          blogId: location.state.id
+        }
+
+        const res = await axios.post("api/order/giveaway", bodyValue)
+
+        if(res) {
+          navigate("/giveawaySuccess", {state: {randomNumber:res.data.randomNumber }});
+        }
         localStorage.removeItem("productData");
-        console.log(paymentAmount, 'payment amount value ishereee')
-        navigate("/success");
-        // if (paymentAmount == 0) {
-        //   //need to refresh or moved to some other success component
-        //   navigate("/");
-        // } else {
-        //   navigate("/success");
-        // }
       }
     } catch (error) {
       console.log(error);
@@ -309,7 +320,7 @@ const CheckoutPage = () => {
               handleScrollToEl("ShippingAddress");
             }}
             onCloseActive={(shippingDetails) => {
-              console.log(shippingDetails, "shippingDetails is hereee");
+              // console.log(shippingDetails, "shippingDetails is hereee");
               if (shippingDetails && !shippingDetails.error) {
                 setShippingDetails(shippingDetails);
                 setTabActive("");

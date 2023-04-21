@@ -53,14 +53,24 @@ const Quiz = ({ quizData }) => {
       setActiveQuestion((prev) => prev + 1);
     } 
     else {
-
       const res = await axios.post("api/blog/quiz/answers", {
         id: quizData[0]._id,
         answers,
       });
 
       setResponse(res);
-      setShowResult(true);
+      if(res.data.status) {
+        setShowResult(true);
+      } else {
+          setShowResult(false);
+          toast.error("Incorrect Answers! Please try again.",
+            {
+              toastId: 'fail1',
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2500,
+            }
+        );
+      }
       setActiveQuestion(0);
     }
   };
@@ -106,9 +116,9 @@ const Quiz = ({ quizData }) => {
   }, [intervalId]);
 
   return (
+    
     <div className="quiz-container">
        <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-       <ToastContainer />
       {!showResult ? (
         <div>
           <div>
@@ -145,7 +155,9 @@ const Quiz = ({ quizData }) => {
           </div>
         </div>
       ) : (
+        
         <div className="result">
+          <ToastContainer />
           {response.data.status && response.data?.canShowAddress ? (
             navigate("/checkout", {state:{id: quizData[0]._id, status:"success", price: 0, shippingCharge: 100, hasInventory: true, isQuiz: true}})
           ) : response.data.status && !response.data?.canShowAddress ? (
