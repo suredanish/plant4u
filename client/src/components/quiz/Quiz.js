@@ -49,7 +49,7 @@ const Quiz = ({ quizData }) => {
     setSelectedAnswerIndex(null);
     let tempAnswer = JSON.parse(JSON.stringify(answers)) || [];
     tempAnswer.push(selectedAnswer);
-    setAnswers(answers);
+    setAnswers(tempAnswer);
     if (activeQuestion !== quizData[0].quiz_questions.length - 1) {
       setActiveQuestion((prev) => prev + 1);
     } else {
