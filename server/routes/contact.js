@@ -14,7 +14,7 @@ const sendEmail = require('../services/sendgrid')
             message: req.body.message,
             subject: req.body.subject
         }
-        await sendEmail(req.body.email, body);
+        await sendEmail(req.body.email, body, req.body.subject);
     }
     catch ( error ) {
         return res.status(400).send({message: 'something went wrong!' , success: false}) ;

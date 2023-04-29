@@ -3,6 +3,8 @@ const router = express.Router();
 const  Razorpay = require('razorpay');
 const {Order} = require('../models/Order')
 const common = require('../utils/common')
+const sendEmail = require('../services/sendgrid')
+const { giveawayTemplate } = require('../template/giveawayTemplate')
 
 router.post('/', async (req,res) => {
 try {
@@ -52,10 +54,11 @@ try {
 });
 
 router.post('/giveaway', async ( req, res) => {
+
   try {
 
     const randomNumber = common.generateRandomNumber();
-
+  
     const orderData = await new Order({
         name:req.body.name,
         email:req.body.email,
@@ -82,6 +85,28 @@ router.post('/giveaway', async ( req, res) => {
           console.log(result)
       }
   })
+
+  // Send giveaway Email
+  try {
+
+    const giveawayEmailBody = {
+      email: req.body.email,
+      name:req.body.name,
+      address: req.body.address,
+      state: req.body.state,
+      pincode: req.body.pincode,
+      city: req.body.city,
+      giveaway_id: randomNumber
+    }
+
+    const emailBody =  giveawayTemplate(giveawayEmailBody);
+    const subject = 'Confirmation for Participation in Giveaway.'
+
+    const _ = await sendEmail(req.body.email, emailBody, subject)
+
+  } catch( error ) {
+    console.log('unable to send mail', error);
+  }
 
     return res.json({ status: true, randomNumber})
   }

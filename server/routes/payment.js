@@ -35,8 +35,8 @@ router.post('/', async(req,res) =>{
             }
   
             const emailBody =  successTemplate(body);
-   
-            const _ = await sendEmail(req.body.email, emailBody)
+            const subject = 'Order Placed Successfully';   
+            const _ = await sendEmail(req.body.email, emailBody, subject)
 
           } catch( error ) {
             

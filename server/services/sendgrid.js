@@ -1,7 +1,7 @@
 const client = require('@sendgrid/mail');
 client.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendEmail = (to, body) => {
+const sendEmail = (to, body, subject) => {
     try {
         const message = {
             from: {
@@ -11,7 +11,7 @@ const sendEmail = (to, body) => {
             to: {
                 email: to,
             },
-            subject: 'Order Placed Successfully',
+            subject: subject,
             content: [
               {
                 type: 'text/html',

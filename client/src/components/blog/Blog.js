@@ -261,7 +261,9 @@ const Blog = () => {
 
           {/* Footer */}
           <div className="footer-blog">
-            {!isAvailableToGiveaway ? 
+            {
+             data[0].price  == 0 ? "" : (
+              !isAvailableToGiveaway? 
             <div className="d-flex justify-content-between">
               <div className="w-50 border-right">
                 <button className="footer-button-class d-flex" onClick={buyNow}>
@@ -297,7 +299,9 @@ const Blog = () => {
                   <div className="ml-2">Get Free</div>{" "}
                 </button>
               </div>
-            </div>}
+            </div>
+             )
+            }
           </div>
         </section>
       </main>
